@@ -1,17 +1,21 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@babel/core': ^7.20.5
   '@pmmmwh/react-refresh-webpack-plugin': ^0.5.5
   '@tarojs/cli': 3.5.8
   '@tarojs/webpack5-runner': 3.5.8
+  '@types/react': ^18.0.26
   '@types/webpack-env': ^1.13.6
   react-refresh: ^0.11.0
   webpack: 5.69.0
 
 devDependencies:
+  '@babel/core': 7.20.5
   '@pmmmwh/react-refresh-webpack-plugin': 0.5.10_uusriqs5flz55rfdoscscc6fjy
-  '@tarojs/cli': 3.5.8
-  '@tarojs/webpack5-runner': 3.5.8_webpack@5.69.0
+  '@tarojs/cli': 3.5.8_@types+react@18.0.26
+  '@tarojs/webpack5-runner': 3.5.8_5w7ys72thaglpndtotex6h6uae
+  '@types/react': 18.0.26
   '@types/webpack-env': 1.18.0
   react-refresh: 0.11.0
   webpack: 5.69.0
@@ -1675,7 +1679,7 @@ packages:
       '@tarojs/runtime': 3.5.8
     dev: true
 
-  /@tarojs/cli/3.5.8:
+  /@tarojs/cli/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-gt4MdEjQIRG1G0CjjDCfWVhLNd2aPweI3I2HRnHpU8eIktIfdoTElfhR3Ye4v76rJfFxRx2HcEDZyWscD8gkSw==}
     engines: {node: '>=12'}
     hasBin: true
@@ -1684,7 +1688,7 @@ packages:
       '@babel/traverse': 7.20.5
       '@babel/types': 7.20.5
       '@tarojs/helper': 3.5.8
-      '@tarojs/service': 3.5.8
+      '@tarojs/service': 3.5.8_@types+react@18.0.26
       '@tarojs/shared': 3.5.8
       '@tarojs/taroize': 3.5.8
       '@tarojs/transformer-wx': 2.2.10
@@ -1728,7 +1732,7 @@ packages:
       - vue
     dev: true
 
-  /@tarojs/components/3.5.8:
+  /@tarojs/components/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-4MAYQEPlWVdKamHdGwIsUds7Edh6PyLiHVw/gsXF+n5wjkF6iZslAfNWzNTzHPc0C83ToXdI+gwqJYKUQ6RlPw==}
     peerDependencies:
       '@types/react': '*'
@@ -1742,8 +1746,9 @@ packages:
       vue:
         optional: true
     dependencies:
-      '@tarojs/router': 3.5.8
-      '@tarojs/taro': 3.5.8
+      '@tarojs/router': 3.5.8_@types+react@18.0.26
+      '@tarojs/taro': 3.5.8_@types+react@18.0.26
+      '@types/react': 18.0.26
       classnames: 2.3.2
       hls.js: 1.2.8
       intersection-observer: 0.7.0
@@ -1784,11 +1789,11 @@ packages:
       - supports-color
     dev: true
 
-  /@tarojs/plugin-platform-alipay/3.5.8:
+  /@tarojs/plugin-platform-alipay/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-PVRFfkouftDHhqWXBoVNQyKIoHdgQaKvDDrkBiv5O98etZSk2ZO4qftizJxf6ZU1UWn8wZgDk577NOYOPLrbJQ==}
     dependencies:
-      '@tarojs/components': 3.5.8
-      '@tarojs/service': 3.5.8
+      '@tarojs/components': 3.5.8_@types+react@18.0.26
+      '@tarojs/service': 3.5.8_@types+react@18.0.26
       '@tarojs/shared': 3.5.8
     transitivePeerDependencies:
       - '@types/react'
@@ -1799,10 +1804,10 @@ packages:
       - vue
     dev: true
 
-  /@tarojs/plugin-platform-jd/3.5.8:
+  /@tarojs/plugin-platform-jd/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-t+WYe/VRt+olbhVJiVUGjQsTzwhqXBA28e/VvvLyxJ8KhFK+CUs2695J1uO/4tL5GgmoEvvFxEWOxHoardLhrw==}
     dependencies:
-      '@tarojs/service': 3.5.8
+      '@tarojs/service': 3.5.8_@types+react@18.0.26
       '@tarojs/shared': 3.5.8
     transitivePeerDependencies:
       - '@types/react'
@@ -1812,11 +1817,11 @@ packages:
       - vue
     dev: true
 
-  /@tarojs/plugin-platform-qq/3.5.8:
+  /@tarojs/plugin-platform-qq/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-ehrf27EvTOC7gROLIM7gFR/3uJIsqfsdW6JLaacKCQ4n2PZBlMkpXplioK+sWpWJ7JHt/OkzaJ67vsCh5bx9Hg==}
     dependencies:
-      '@tarojs/plugin-platform-weapp': 3.5.8
-      '@tarojs/service': 3.5.8
+      '@tarojs/plugin-platform-weapp': 3.5.8_@types+react@18.0.26
+      '@tarojs/service': 3.5.8_@types+react@18.0.26
       '@tarojs/shared': 3.5.8
     transitivePeerDependencies:
       - '@types/react'
@@ -1827,11 +1832,11 @@ packages:
       - vue
     dev: true
 
-  /@tarojs/plugin-platform-swan/3.5.8:
+  /@tarojs/plugin-platform-swan/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-Q7NBOpzGP2minvHtO+MEexUtEi+VVdpeRA58Y+oX/YmQpk/lApgG+/eE7HcLX/Wv7WuejxJmv29AzceTnPrmew==}
     dependencies:
-      '@tarojs/components': 3.5.8
-      '@tarojs/service': 3.5.8
+      '@tarojs/components': 3.5.8_@types+react@18.0.26
+      '@tarojs/service': 3.5.8_@types+react@18.0.26
       '@tarojs/shared': 3.5.8
     transitivePeerDependencies:
       - '@types/react'
@@ -1842,11 +1847,11 @@ packages:
       - vue
     dev: true
 
-  /@tarojs/plugin-platform-tt/3.5.8:
+  /@tarojs/plugin-platform-tt/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-jhhTzkvXbEyx8dG8+hEDyo8M51pNy1oLWEu6qQWUAfkYbjT6qUYKpzDoPBKINNMjPQ1pMJ7RBxQXJ0tq8zA9kw==}
     dependencies:
-      '@tarojs/components': 3.5.8
-      '@tarojs/service': 3.5.8
+      '@tarojs/components': 3.5.8_@types+react@18.0.26
+      '@tarojs/service': 3.5.8_@types+react@18.0.26
       '@tarojs/shared': 3.5.8
     transitivePeerDependencies:
       - '@types/react'
@@ -1857,11 +1862,11 @@ packages:
       - vue
     dev: true
 
-  /@tarojs/plugin-platform-weapp/3.5.8:
+  /@tarojs/plugin-platform-weapp/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-F9tN/2CXGbOLF7U++s6mMwYaLW/2tGrkeut9Lkk8XAUugTWROu9k10BtT4sRLxdgPetFyUBvqenu87MIrzG8gw==}
     dependencies:
-      '@tarojs/components': 3.5.8
-      '@tarojs/service': 3.5.8
+      '@tarojs/components': 3.5.8_@types+react@18.0.26
+      '@tarojs/service': 3.5.8_@types+react@18.0.26
       '@tarojs/shared': 3.5.8
     transitivePeerDependencies:
       - '@types/react'
@@ -1872,11 +1877,11 @@ packages:
       - vue
     dev: true
 
-  /@tarojs/router/3.5.8:
+  /@tarojs/router/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-9dU+TOt2RhHEUVezc8iw+JsII3B/XRyVb8NWGBuOPAO0fpvVKLMdV+2qiB7ZygVS/I0o57kAIlM4xjVY9wbuxw==}
     dependencies:
       '@tarojs/runtime': 3.5.8
-      '@tarojs/taro': 3.5.8
+      '@tarojs/taro': 3.5.8_@types+react@18.0.26
       dingtalk-jsapi: 2.15.4
       history: 5.3.0
       mobile-detect: 1.4.5
@@ -1905,12 +1910,12 @@ packages:
       lodash-es: 4.17.21
     dev: true
 
-  /@tarojs/service/3.5.8:
+  /@tarojs/service/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-QhtFJ8QD9Q/Z/LlfK5nMjMIwhvKaOnzcE6mLmoVMoOF5V6+oerKTqGj51iViyDY0eEoxm7v3JGzuMnD88IspYA==}
     dependencies:
       '@tarojs/helper': 3.5.8
       '@tarojs/shared': 3.5.8
-      '@tarojs/taro': 3.5.8
+      '@tarojs/taro': 3.5.8_@types+react@18.0.26
       fs-extra: 8.1.0
       joi: 17.7.0
       lodash: 4.17.21
@@ -1929,11 +1934,11 @@ packages:
     resolution: {integrity: sha512-37SzGoZZhOBod9/Va13h8d1qIvU10t4kbKRf0TGZQ6tmGxLljSgP4zZFcuHoF5l/yId4IGgf7rN9asJ3K7z4Rg==}
     dev: true
 
-  /@tarojs/taro-loader/3.5.8:
+  /@tarojs/taro-loader/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-Sst+DN7mQVaZxCwkj8mz68bjGxSaXCNjZbTGlAT50f6pQbhTCXq3d8C7pGuf/VyncP2BL705p/n/0+sELP+5fw==}
     dependencies:
       '@tarojs/helper': 3.5.8
-      '@tarojs/taro': 3.5.8
+      '@tarojs/taro': 3.5.8_@types+react@18.0.26
       loader-utils: 1.4.2
     transitivePeerDependencies:
       - '@types/react'
@@ -1943,7 +1948,7 @@ packages:
       - vue
     dev: true
 
-  /@tarojs/taro/3.5.8:
+  /@tarojs/taro/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-qrtVz+r+mzXrTY778MQu3MimOBW2lduxG6zbRiZIQBkS9Dm87txRkdO78DoQI4kvi6yrwDG3hCPpTzHqQgf6rA==}
     peerDependencies:
       '@types/react': '*'
@@ -1962,6 +1967,7 @@ packages:
     dependencies:
       '@tarojs/api': 3.5.8
       '@tarojs/runtime': 3.5.8
+      '@types/react': 18.0.26
     dev: true
 
   /@tarojs/taroize/3.5.8:
@@ -2014,14 +2020,14 @@ packages:
       - supports-color
     dev: true
 
-  /@tarojs/webpack5-prebundle/3.5.8_webpack@5.69.0:
+  /@tarojs/webpack5-prebundle/3.5.8_5wepajac4q5nclwgc2dvs7jaqu:
     resolution: {integrity: sha512-K/NIFtXwA9n90N8i7P6jYWUFSmvMHAZWebZRa9u0qjQvLkNEI3yEgmvsG7v50RTvhDUw1n+uZ272aVeptmL3Jg==}
     peerDependencies:
       webpack: ^5.69.0
     dependencies:
       '@swc/core': 1.3.21
       '@tarojs/helper': 3.5.8
-      '@tarojs/taro': 3.5.8
+      '@tarojs/taro': 3.5.8_@types+react@18.0.26
       enhanced-resolve: 5.12.0
       es-module-lexer: 0.10.5
       esbuild: 0.14.54
@@ -2038,28 +2044,28 @@ packages:
       - vue
     dev: true
 
-  /@tarojs/webpack5-runner/3.5.8_webpack@5.69.0:
+  /@tarojs/webpack5-runner/3.5.8_5w7ys72thaglpndtotex6h6uae:
     resolution: {integrity: sha512-s/n7gOCVKABjmIaDnrhEbNU6u3hCMGjroFoflv9ZgzV1vvbCwjo2cbHry8F1Vk1FEZrpHuEc6Xhk+fhZJFuDLQ==}
     peerDependencies:
       webpack: ^5.69.0
     dependencies:
       '@parcel/css': 1.14.0
       '@tarojs/helper': 3.5.8
-      '@tarojs/plugin-platform-alipay': 3.5.8
-      '@tarojs/plugin-platform-jd': 3.5.8
-      '@tarojs/plugin-platform-qq': 3.5.8
-      '@tarojs/plugin-platform-swan': 3.5.8
-      '@tarojs/plugin-platform-tt': 3.5.8
-      '@tarojs/plugin-platform-weapp': 3.5.8
+      '@tarojs/plugin-platform-alipay': 3.5.8_@types+react@18.0.26
+      '@tarojs/plugin-platform-jd': 3.5.8_@types+react@18.0.26
+      '@tarojs/plugin-platform-qq': 3.5.8_@types+react@18.0.26
+      '@tarojs/plugin-platform-swan': 3.5.8_@types+react@18.0.26
+      '@tarojs/plugin-platform-tt': 3.5.8_@types+react@18.0.26
+      '@tarojs/plugin-platform-weapp': 3.5.8_@types+react@18.0.26
       '@tarojs/runner-utils': 3.5.8
       '@tarojs/runtime': 3.5.8
       '@tarojs/shared': 3.5.8
-      '@tarojs/taro': 3.5.8
-      '@tarojs/taro-loader': 3.5.8
-      '@tarojs/webpack5-prebundle': 3.5.8_webpack@5.69.0
+      '@tarojs/taro': 3.5.8_@types+react@18.0.26
+      '@tarojs/taro-loader': 3.5.8_@types+react@18.0.26
+      '@tarojs/webpack5-prebundle': 3.5.8_5wepajac4q5nclwgc2dvs7jaqu
       acorn-walk: 8.2.0
       autoprefixer: 9.8.8
-      babel-loader: 8.2.1_webpack@5.69.0
+      babel-loader: 8.2.1_itz6nc3epbfg5ra6noztuyjvye
       copy-webpack-plugin: 10.2.0_webpack@5.69.0
       css-loader: 6.5.1_webpack@5.69.0
       css-minimizer-webpack-plugin: 3.4.1_x6jbniunv3czvlrvazt3aibbie
@@ -2280,12 +2286,24 @@ packages:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
     dev: true
 
+  /@types/prop-types/15.7.5:
+    resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+    dev: true
+
   /@types/qs/6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
     dev: true
 
   /@types/range-parser/1.2.4:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
+    dev: true
+
+  /@types/react/18.0.26:
+    resolution: {integrity: sha512-hCR3PJQsAIXyxhTNSiDFY//LhnMZWpNNr5etoCqx/iUfGc5gXWtQR2Phl908jVR6uPXacojQWTg4qRpkxTuGug==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.2
+      csstype: 3.1.1
     dev: true
 
   /@types/responselike/1.0.0:
@@ -2302,6 +2320,10 @@ packages:
     resolution: {integrity: sha512-BPdoIt1lfJ6B7rw35ncdwBZrAssjcwzI5LByIrYs+tpXlj/CAkuVdRsgZDdP4lq5EjyWzwxZCqAoFyHKFwp32g==}
     dependencies:
       '@types/node': 18.11.11
+    dev: true
+
+  /@types/scheduler/0.16.2:
+    resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
     dev: true
 
   /@types/serve-index/1.9.1:
@@ -2978,13 +3000,14 @@ packages:
       - supports-color
     dev: true
 
-  /babel-loader/8.2.1_webpack@5.69.0:
+  /babel-loader/8.2.1_itz6nc3epbfg5ra6noztuyjvye:
     resolution: {integrity: sha512-dMF8sb2KQ8kJl21GUjkW1HWmcsL39GOV5vnzjqrCzEPNY0S0UfMLnumidiwIajDSBmKhYf5iRW+HXaM4cvCKBw==}
     engines: {node: '>= 8.9'}
     peerDependencies:
       '@babel/core': ^7.0.0
       webpack: '>=2'
     dependencies:
+      '@babel/core': 7.20.5
       find-cache-dir: 2.1.0
       loader-utils: 1.4.2
       make-dir: 2.1.0
@@ -3061,8 +3084,6 @@ packages:
       babel-register: 6.26.0
       babylon: 6.18.0
       require-from-string: 2.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /babel-plugin-syntax-class-properties/6.13.0:
@@ -4277,6 +4298,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       cssom: 0.3.8
+    dev: true
+
+  /csstype/3.1.1:
+    resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: true
 
   /cuint/0.2.2:

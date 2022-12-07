@@ -1,4 +1,4 @@
-import { Component, PropsWithChildren } from 'react'
+import { ReactNode, Component, PropsWithChildren } from 'react'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
 
@@ -19,6 +19,6 @@ export default class Index extends Component<PropsWithChildren> {
       <View className='index'>
         <Text>Hello world!</Text>
       </View>
-    )
+    ) as ReactNode
   }
 }

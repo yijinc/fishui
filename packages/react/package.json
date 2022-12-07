@@ -11,5 +11,8 @@
     "Android >= 4.1",
     "ios >= 8"
   ],
-  "author": "fish"
+  "author": "fish",
+  "devDependencies": {
+    "@types/react": "^18.0.26"
+  }
 }

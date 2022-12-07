@@ -35,11 +35,13 @@
   ],
   "author": "fish",
   "devDependencies": {
-    "@tarojs/cli": "3.5.8",
-    "@types/webpack-env": "^1.13.6",
-    "webpack": "5.69.0",
-    "@tarojs/webpack5-runner": "3.5.8",
+    "@babel/core": "^7.20.5",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
-    "react-refresh": "^0.11.0"
+    "@tarojs/cli": "3.5.8",
+    "@tarojs/webpack5-runner": "3.5.8",
+    "@types/react": "^18.0.26",
+    "@types/webpack-env": "^1.13.6",
+    "react-refresh": "^0.11.0",
+    "webpack": "5.69.0"
   }
 }

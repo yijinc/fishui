@@ -13,20 +13,22 @@
   ],
   "author": "",
   "devDependencies": {
-    "vue": "3.2.45",
-    "@tarojs/plugin-framework-vue3": "3.5.8",
+    "@babel/core": "^7.20.5",
     "@tarojs/components": "3.5.8",
     "@tarojs/helper": "3.5.8",
-    "@tarojs/plugin-platform-weapp": "3.5.8",
+    "@tarojs/plugin-framework-vue3": "3.5.8",
     "@tarojs/plugin-platform-alipay": "3.5.8",
-    "@tarojs/plugin-platform-tt": "3.5.8",
-    "@tarojs/plugin-platform-swan": "3.5.8",
     "@tarojs/plugin-platform-jd": "3.5.8",
     "@tarojs/plugin-platform-qq": "3.5.8",
+    "@tarojs/plugin-platform-swan": "3.5.8",
+    "@tarojs/plugin-platform-tt": "3.5.8",
+    "@tarojs/plugin-platform-weapp": "3.5.8",
     "@tarojs/router": "3.5.8",
     "@tarojs/runtime": "3.5.8",
     "@tarojs/shared": "3.5.8",
     "@tarojs/taro": "3.5.8",
-    "@tarojs/taro-h5": "3.5.8"
+    "@tarojs/taro-h5": "3.5.8",
+    "@vue/babel-plugin-jsx": "^1.0.6",
+    "vue": "3.2.45"
   }
 }
