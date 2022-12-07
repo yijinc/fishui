@@ -1,0 +1,156 @@
+$refresher-height: 80PX;
+$success-bar-height: 32PX;
+
+.fish-scroll {
+  height: 100%;
+  position: relative;
+
+  &__refresher {
+    position: absolute;
+    width: 100%;
+    height: $refresher-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &-flush {
+      top: 0 !important;
+      position: relative;
+    }
+
+    &-text {
+      font-size: 28px;
+      color: #999999;
+      margin-left: 8px;
+    }
+  }
+
+  &__success {
+    height: $refresher-height; // refresher-success bar
+    width: 100%;
+    transition: height .5s ease;
+    &-show {
+      height: $success-bar-height !important;
+    }
+    &-hide {
+      margin-top: -$success-bar-height;
+      transition: margin-top .3s ease;
+    }
+    &-bar {
+      background-color: #7468F2;
+      color: #ffffff;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: scale(0);
+      height: $success-bar-height;
+      width: 100%;
+      &-show {
+        transform: scale(1);
+        opacity: 1;
+        transition: opacity .35s linear, transform .35s linear;
+      } 
+    }
+  }
+
+  &__loadmore {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 88px;
+    font-size: 28px;
+    color: #999999;
+  }
+}
+
+.fish-loading {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+
+  @keyframes fadeDelay {
+    0%, 39%, 100% {
+      opacity: 0.2;
+    }
+    40% {
+      opacity: 1;
+    }
+  }
+
+  &__item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+
+    &::before {
+      content: "";
+      display: block;
+      margin: 0 auto;
+      width: 4px;
+      height: 8px;
+      background-color: #aaaaaa;
+      border-radius: 4px;
+      animation: fadeDelay 1.2s infinite;
+    }
+
+    @for $i from 2 through 12 {
+      &:nth-child(#{$i}) {
+        transform: rotate(#{($i - 1) * 30}deg);
+  
+        &:before {
+          animation-delay: #{-1.1 + (($i - 2) / 10)}s;
+        }
+      }
+    }
+  }
+}
+
+.fish-arrow {
+  width: 32px;
+  text-align: center;
+
+  &__line {
+    position: relative;
+    border-radius: 4px;
+    width: 4px;
+    height: 28px;
+    background-color: #aaaaaa;
+    transition: transform 0.15s ease-in-out;
+    display: inline-block;
+    vertical-align: middle;
+    &::before {
+      position: absolute;
+      content: "";
+      bottom: -4px;
+      right: 50%;
+      width: 4px;
+      height: 16px;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+      background-color: #aaaaaa;
+      border-radius: 4px;
+    }
+  
+    &::after {
+      position: absolute;
+      content: "";
+      bottom: -4px;
+      left: 50%;
+      width: 4px;
+      height: 16px;
+      transform: rotate(-45deg);
+      transform-origin: 0% 100%;
+      background-color: #aaaaaa;
+      border-radius: 4px;
+    }
+  }
+
+  &.rotate {
+    transform: rotate(-180deg);
+  }
+}
