@@ -9,12 +9,6 @@ importers:
       '@tarojs/components': 3.5.8
       '@tarojs/helper': 3.5.8
       '@tarojs/plugin-framework-react': 3.5.8
-      '@tarojs/plugin-platform-alipay': 3.5.8
-      '@tarojs/plugin-platform-jd': 3.5.8
-      '@tarojs/plugin-platform-qq': 3.5.8
-      '@tarojs/plugin-platform-swan': 3.5.8
-      '@tarojs/plugin-platform-tt': 3.5.8
-      '@tarojs/plugin-platform-weapp': 3.5.8
       '@tarojs/react': 3.5.8
       '@tarojs/router': 3.5.8
       '@tarojs/runtime': 3.5.8
@@ -39,12 +33,6 @@ importers:
       '@tarojs/components': 3.5.8
       '@tarojs/helper': 3.5.8
       '@tarojs/plugin-framework-react': 3.5.8_react@18.2.0
-      '@tarojs/plugin-platform-alipay': 3.5.8
-      '@tarojs/plugin-platform-jd': 3.5.8
-      '@tarojs/plugin-platform-qq': 3.5.8
-      '@tarojs/plugin-platform-swan': 3.5.8
-      '@tarojs/plugin-platform-tt': 3.5.8
-      '@tarojs/plugin-platform-weapp': 3.5.8
       '@tarojs/react': 3.5.8_react@18.2.0
       '@tarojs/router': 3.5.8
       '@tarojs/runtime': 3.5.8
@@ -1913,21 +1901,6 @@ packages:
       - vue
     dev: false
 
-  /@tarojs/plugin-platform-alipay/3.5.8:
-    resolution: {integrity: sha512-PVRFfkouftDHhqWXBoVNQyKIoHdgQaKvDDrkBiv5O98etZSk2ZO4qftizJxf6ZU1UWn8wZgDk577NOYOPLrbJQ==}
-    dependencies:
-      '@tarojs/components': 3.5.8
-      '@tarojs/service': 3.5.8
-      '@tarojs/shared': 3.5.8
-    transitivePeerDependencies:
-      - '@types/react'
-      - '@types/react-native'
-      - '@types/webpack'
-      - '@types/webpack-dev-server'
-      - supports-color
-      - vue
-    dev: false
-
   /@tarojs/plugin-platform-alipay/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-PVRFfkouftDHhqWXBoVNQyKIoHdgQaKvDDrkBiv5O98etZSk2ZO4qftizJxf6ZU1UWn8wZgDk577NOYOPLrbJQ==}
     dependencies:
@@ -1937,19 +1910,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-native'
-      - '@types/webpack'
-      - '@types/webpack-dev-server'
-      - supports-color
-      - vue
-    dev: false
-
-  /@tarojs/plugin-platform-jd/3.5.8:
-    resolution: {integrity: sha512-t+WYe/VRt+olbhVJiVUGjQsTzwhqXBA28e/VvvLyxJ8KhFK+CUs2695J1uO/4tL5GgmoEvvFxEWOxHoardLhrw==}
-    dependencies:
-      '@tarojs/service': 3.5.8
-      '@tarojs/shared': 3.5.8
-    transitivePeerDependencies:
-      - '@types/react'
       - '@types/webpack'
       - '@types/webpack-dev-server'
       - supports-color
@@ -1969,41 +1929,11 @@ packages:
       - vue
     dev: false
 
-  /@tarojs/plugin-platform-qq/3.5.8:
-    resolution: {integrity: sha512-ehrf27EvTOC7gROLIM7gFR/3uJIsqfsdW6JLaacKCQ4n2PZBlMkpXplioK+sWpWJ7JHt/OkzaJ67vsCh5bx9Hg==}
-    dependencies:
-      '@tarojs/plugin-platform-weapp': 3.5.8
-      '@tarojs/service': 3.5.8
-      '@tarojs/shared': 3.5.8
-    transitivePeerDependencies:
-      - '@types/react'
-      - '@types/react-native'
-      - '@types/webpack'
-      - '@types/webpack-dev-server'
-      - supports-color
-      - vue
-    dev: false
-
   /@tarojs/plugin-platform-qq/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-ehrf27EvTOC7gROLIM7gFR/3uJIsqfsdW6JLaacKCQ4n2PZBlMkpXplioK+sWpWJ7JHt/OkzaJ67vsCh5bx9Hg==}
     dependencies:
       '@tarojs/plugin-platform-weapp': 3.5.8_@types+react@18.0.26
       '@tarojs/service': 3.5.8_@types+react@18.0.26
-      '@tarojs/shared': 3.5.8
-    transitivePeerDependencies:
-      - '@types/react'
-      - '@types/react-native'
-      - '@types/webpack'
-      - '@types/webpack-dev-server'
-      - supports-color
-      - vue
-    dev: false
-
-  /@tarojs/plugin-platform-swan/3.5.8:
-    resolution: {integrity: sha512-Q7NBOpzGP2minvHtO+MEexUtEi+VVdpeRA58Y+oX/YmQpk/lApgG+/eE7HcLX/Wv7WuejxJmv29AzceTnPrmew==}
-    dependencies:
-      '@tarojs/components': 3.5.8
-      '@tarojs/service': 3.5.8
       '@tarojs/shared': 3.5.8
     transitivePeerDependencies:
       - '@types/react'
@@ -2029,41 +1959,11 @@ packages:
       - vue
     dev: false
 
-  /@tarojs/plugin-platform-tt/3.5.8:
-    resolution: {integrity: sha512-jhhTzkvXbEyx8dG8+hEDyo8M51pNy1oLWEu6qQWUAfkYbjT6qUYKpzDoPBKINNMjPQ1pMJ7RBxQXJ0tq8zA9kw==}
-    dependencies:
-      '@tarojs/components': 3.5.8
-      '@tarojs/service': 3.5.8
-      '@tarojs/shared': 3.5.8
-    transitivePeerDependencies:
-      - '@types/react'
-      - '@types/react-native'
-      - '@types/webpack'
-      - '@types/webpack-dev-server'
-      - supports-color
-      - vue
-    dev: false
-
   /@tarojs/plugin-platform-tt/3.5.8_@types+react@18.0.26:
     resolution: {integrity: sha512-jhhTzkvXbEyx8dG8+hEDyo8M51pNy1oLWEu6qQWUAfkYbjT6qUYKpzDoPBKINNMjPQ1pMJ7RBxQXJ0tq8zA9kw==}
     dependencies:
       '@tarojs/components': 3.5.8_@types+react@18.0.26
       '@tarojs/service': 3.5.8_@types+react@18.0.26
-      '@tarojs/shared': 3.5.8
-    transitivePeerDependencies:
-      - '@types/react'
-      - '@types/react-native'
-      - '@types/webpack'
-      - '@types/webpack-dev-server'
-      - supports-color
-      - vue
-    dev: false
-
-  /@tarojs/plugin-platform-weapp/3.5.8:
-    resolution: {integrity: sha512-F9tN/2CXGbOLF7U++s6mMwYaLW/2tGrkeut9Lkk8XAUugTWROu9k10BtT4sRLxdgPetFyUBvqenu87MIrzG8gw==}
-    dependencies:
-      '@tarojs/components': 3.5.8
-      '@tarojs/service': 3.5.8
       '@tarojs/shared': 3.5.8
     transitivePeerDependencies:
       - '@types/react'

@@ -9,7 +9,8 @@
     "css": "sass"
   },
   "scripts": {
-    "build:weapp": "taro build --type weapp",
+    "start": "npm run build:weapp -- --watch",
+    "build": "taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
     "build:tt": "taro build --type tt",
@@ -18,7 +19,6 @@
     "build:qq": "taro build --type qq",
     "build:jd": "taro build --type jd",
     "build:quickapp": "taro build --type quickapp",
-    "dev:weapp": "npm run build:weapp -- --watch",
     "dev:swan": "npm run build:swan -- --watch",
     "dev:alipay": "npm run build:alipay -- --watch",
     "dev:tt": "npm run build:tt -- --watch",
@@ -34,6 +34,14 @@
     "ios >= 8"
   ],
   "author": "fish",
+  "dependencies": {
+    "@tarojs/plugin-platform-alipay": "3.5.8",
+    "@tarojs/plugin-platform-jd": "3.5.8",
+    "@tarojs/plugin-platform-qq": "3.5.8",
+    "@tarojs/plugin-platform-swan": "3.5.8",
+    "@tarojs/plugin-platform-tt": "3.5.8",
+    "@tarojs/plugin-platform-weapp": "3.5.8"
+  },
   "devDependencies": {
     "@babel/core": "^7.20.5",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
