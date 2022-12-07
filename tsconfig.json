@@ -22,6 +22,6 @@
       "node_modules/@types"
     ]
   },
-  "include": ["./src", "./types"],
+  "include": ["./packages/react/src", "./packages/demo/src", "./types"],
   "compileOnSave": false
 }

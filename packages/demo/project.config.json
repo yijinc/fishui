@@ -1,10 +1,10 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "demo",
-  "description": "intro",
-  "appid": "touristappid",
+  "projectname": "taropui",
+  "description": "常用的小程序ui组件库 基于Taro",
+  "appid": "wx81128fb648a2925c",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": false,
     "enhance": false,
     "compileHotReLoad": false,
