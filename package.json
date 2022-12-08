@@ -39,6 +39,7 @@
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-vue": "^9.8.0",
+    "sass": "^1.56.1",
     "stylelint": "^14.4.0",
     "typescript": "^4.1.0",
     "vite": "^3.2.5",

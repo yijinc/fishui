@@ -15,7 +15,7 @@
   "typings": "./lib/index.d.ts",
   "scripts": {
     "dev": "vite build",
-    "build": "vite build --config config/vite.config.ts && vite build --config config/vite.config.disperse.ts"
+    "build": "vite build --config config/vite.config.ts && vite build --config config/vite.config.disperse.ts && vite build --config config/vite.config.css.ts"
   },
   "browserslist": [
     "last 3 versions",
