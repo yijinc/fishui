@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES2015",
     "module": "ES2015",
     "downlevelIteration": true,
     "removeComments": false,
@@ -9,7 +9,7 @@
     "experimentalDecorators": true,
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
-    "outDir": "dist",
+    "outDir": "lib",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
@@ -20,10 +20,10 @@
     "jsx": "preserve",
     "allowJs": true,
     "resolveJsonModule": true,
-    "types": ["node"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
   },
   "compileOnSave": false,
-  "exclude": [
-    "node_modules/*"
-  ]
+  "include": ["./src"],
 }
