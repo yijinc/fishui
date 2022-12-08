@@ -17,6 +17,13 @@ declare namespace NodeJS {
   }
 }
 
-// declare module '@tarojs/components' {
-//   export * from '@tarojs/components/types/index.vue3'
-// }
+declare module "*.vue" {
+  // eslint-disable-next-line import/newline-after-import
+  import { defineComponent } from "vue";
+  const component: ReturnType<typeof defineComponent>;
+  export default component;
+}
+
+declare module '@tarojs/components' {
+  export * from '@tarojs/components/types/index.vue3'
+}

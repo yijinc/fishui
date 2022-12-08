@@ -2,9 +2,12 @@
   "name": "@taropui/vue",
   "version": "1.0.0",
   "description": "taropui for vue",
+  "main": "",
+  "module": "",
+  "type": "module",
   "scripts": {
-    "build:weapp": "taro build --type weapp",
-    "dev:weapp": "npm run build:weapp -- --watch"
+    "dev": "vite build",
+    "build": "vite build"
   },
   "browserslist": [
     "last 3 versions",

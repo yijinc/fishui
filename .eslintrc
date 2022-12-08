@@ -12,7 +12,15 @@
     "defineAppConfig": "readonly",
     "definePageConfig": "readonly"
   },
-  "ignorePatterns": ["node_modules", "dist", "config", "babel.config.js"],
+  "ignorePatterns": [
+    "node_modules",
+    "dist",
+    "lib",
+    "es",
+    "config",
+    "babel.config.js",
+    "rollup.config.js"
+  ],
   "overrides": [
     {
       "files": [
