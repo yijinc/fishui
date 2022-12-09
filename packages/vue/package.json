@@ -2,6 +2,14 @@
   "name": "@taropui/vue",
   "version": "1.0.0",
   "description": "taropui for vue",
+  "keywords": [
+    "taro",
+    "vue",
+    "vue3"
+  ],
+  "author": "yijinc <yijinc@qq.com>",
+  "homepage": "https://github.com/yijinc/taropui",
+  "license": "ISC",
   "files": ["lib"],
   "main": "./lib/index.umd.js",
   "module": "./lib/index.js",
@@ -13,6 +21,13 @@
     }
   },
   "typings": "./lib/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/yijinc/taropui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yijinc/taropui"
+  },
   "scripts": {
     "dev": "vite build",
     "build": "vite build --config config/vite.config.ts && vite build --config config/vite.config.css.ts && vite build --config config/vite.config.disperse.ts"
@@ -22,11 +37,13 @@
     "Android >= 4.1",
     "ios >= 8"
   ],
-  "author": "",
   "devDependencies": {
     "@babel/core": "^7.20.5",
     "@tarojs/plugin-framework-vue3": "3.5.8",
     "@vue/babel-plugin-jsx": "^1.0.6",
     "vue": "3.2.45"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

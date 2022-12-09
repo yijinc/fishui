@@ -14,7 +14,6 @@ const inputCollect = (componentsPath: string) => {
       input[dir.name] = `${componentsPath}/${dir.name}/index.vue`
     }
   });
-
 }
 
 inputCollect(path.resolve(__dirname, '../src/components'));

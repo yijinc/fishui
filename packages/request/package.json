@@ -7,6 +7,9 @@
     "request",
     "taro"
   ],
+  "author": "yijinc <yijinc@qq.com>",
+  "homepage": "https://github.com/yijinc/taropui",
+  "files": ["lib"],
   "main": "./lib/index.js",
   "module": "./lib/index.js",
   "type": "module",
@@ -19,6 +22,8 @@
     "type": "git",
     "url": "https://github.com/yijinc/taropui"
   },
-  "author": "fish",
-  "license": "ISC"
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  }
 }
