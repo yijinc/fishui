@@ -2,6 +2,12 @@
 
 ```bash
 npm add @taropui/vue
+
+# or
+npm add @taropui/react
+
+# and more
+npm add @taropui/request
 ```
 
 ## 使用
