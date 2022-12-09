@@ -9,7 +9,7 @@
   ],
   "author": "yijinc <yijinc@qq.com>",
   "homepage": "https://github.com/yijinc/taropui",
-  "files": ["lib"],
+  "files": ["lib", "types"],
   "main": "./lib/index.js",
   "module": "./lib/index.js",
   "type": "module",
