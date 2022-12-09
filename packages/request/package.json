@@ -1,0 +1,24 @@
+{
+  "name": "@taropui/request",
+  "version": "1.0.0",
+  "description": "request for taro",
+  "keywords": [
+    "axios",
+    "request",
+    "taro"
+  ],
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "type": "module",
+  "typings": "types/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yijinc/taropui"
+  },
+  "author": "fish",
+  "license": "ISC"
+}
