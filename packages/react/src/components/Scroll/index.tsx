@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 import classnames from 'classnames';
 import { useReady, createSelectorQuery, NodesRef } from '@tarojs/taro';
 import { ScrollView, View, Block, Text, ScrollViewProps, BaseEventOrig } from '@tarojs/components';

@@ -283,6 +283,8 @@ const DragX: React.FC<IDragXProps> = (props) => {
     render('init');
   });
 
+  React.useEffect(render, [props.itemHeight, props.columns, props.listData]);
+
   return (
     <ScrollView
       id={props.id}

@@ -257,6 +257,8 @@ const Drag: React.FC<IDragProps> = (props) => {
     render('init');
   });
 
+  React.useEffect(render, [props.itemHeight, props.columns, props.listData]);
+
   return (
     <View id={props.id} className='fish-drag' style={{ height: pxTransform(wrapHeight) }}>
       {props.before}
