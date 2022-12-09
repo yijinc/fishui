@@ -2,17 +2,47 @@
   "name": "@taropui/react",
   "version": "1.0.0",
   "description": "taropui for react",
+  "keywords": [
+    "taro",
+    "react"
+  ],
+  "author": "yijinc <yijinc@qq.com>",
+  "homepage": "https://github.com/yijinc/taropui",
+  "license": "ISC",
+  "files": [
+    "lib"
+  ],
+  "main": "./lib/index.umd.js",
+  "module": "./lib/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./lib/index.umd.js"
+    }
+  },
+  "typings": "./lib/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/yijinc/taropui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yijinc/taropui"
+  },
   "scripts": {
-    "build:weapp": "taro build --type weapp",
-    "dev:weapp": "npm run build:weapp -- --watch"
+    "dev": "vite build",
+    "build": "vite build --config config/vite.config.ts && vite build --config config/vite.config.css.ts && vite build --config config/vite.config.disperse.ts"
   },
   "browserslist": [
     "last 3 versions",
     "Android >= 4.1",
     "ios >= 8"
   ],
-  "author": "fish",
   "devDependencies": {
-    "@types/react": "^18.0.26"
+    "@types/react": "^18.0.26",
+    "classnames": "^2.3.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
