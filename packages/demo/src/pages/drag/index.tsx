@@ -1,10 +1,11 @@
+import { useState } from 'react';
 import Taro from '@tarojs/taro';
-import { View } from '@tarojs/components';
-import { DragX }  from '@taropui/react';
+import { View, Text, Button, Slider } from '@tarojs/components';
+import { Drag }  from '@taropui/react';
 import styles from './styles.module.scss'
 
 definePageConfig({
-  navigationBarTitleText: 'drag-x',
+  navigationBarTitleText: 'drag',
 	disableScroll: true,
 	enableShareAppMessage: true,
 	enableShareTimeline: true,
@@ -18,7 +19,7 @@ interface IListItem {
 
 const listData: IListItem[] = [
 	{ key: '0', backgroundColor: 'red', fixed: false },
-	{ key: '1', backgroundColor: 'deeppink', fixed: false },
+	{ key: '1', backgroundColor: 'deeppink', fixed: true },
 	{ key: '2', backgroundColor: 'green', fixed: false },
 	{ key: '3', backgroundColor: 'orange', fixed: false },
 	{ key: '4', backgroundColor: 'purple', fixed: false },
@@ -31,6 +32,11 @@ const listData: IListItem[] = [
 
 export default () => {
   const itemHeight = Taro.getSystemInfoSync().windowWidth / 1.5;
+  const [columns, setColumns] = useState<number>(3);
+  const [longpressTrigger, setLongpressTrigger] = useState<boolean>(true);
+  const onColumnsChange = (e) => {
+    setColumns(e.detail.value);
+  };
   
   const onChange = (list) => {
     console.log('onChange', list);
@@ -39,23 +45,30 @@ export default () => {
 
   const renderItem = (item: IListItem) => {
     return (
-      <View className={styles.item} style={{ backgroundColor: item.backgroundColor }}>
+      <View className={styles.item} style={{ backgroundColor: item.backgroundColor, width: `${100 / columns}vw` }}>
         {item.fixed ? 'fixed' : item.key }
       </View>
-    ) as React.ReactNode
+    )
   };
 
   return (
     <View className={styles.container}>
-      <DragX
-        vibrate
-        listData={listData}
-        itemHeight={itemHeight}
-        trigger='longpress'
-        onChange={onChange}
-        renderItem={renderItem}
-        renderDragItem={() => <View className={styles.dragBtn} /> as React.ReactNode}
-      />
-    </View>
+    <Drag
+      vibrate
+      listData={listData}
+      itemHeight={itemHeight}
+      columns={columns}
+      onChange={onChange}
+      renderItem={renderItem}
+      trigger={longpressTrigger? 'longpress' : 'touchstart'}
+    />
+		<View className={styles.footer}>
+			<Slider step={1} showValue min={1} max={5} value={columns} onChange={onColumnsChange} />
+			<View className={styles.bottom}>
+				<Text>colums: { columns }</Text>
+				<Button onTap={() => setLongpressTrigger(!longpressTrigger)}>trigger: { longpressTrigger ? 'longpress' : 'touchstart' }</Button>
+			</View>
+		</View>
+  </View>
   )
 };
