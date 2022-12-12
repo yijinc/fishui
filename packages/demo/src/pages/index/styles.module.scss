@@ -1,0 +1,29 @@
+.container {
+  .item {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    &:last-of-type {
+      border-bottom: 1px solid #eee;
+    }
+  }
+
+  .flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    image {
+      width: 128px;
+      height: 128px;
+    }
+    .info {
+      padding-left: 40px;
+      color: #666666;
+      font-size: 28px;
+    }
+    .title {
+      font-size: 36px;
+      color: #7468F2;
+    }
+  }
+}
