@@ -20,14 +20,13 @@ interface IItem<T> {
 }
 
 interface IState {
-  selected: number; // 当前选择的 item index
+  current: number; // 当前选择的 item index
   translateX: number;
   translateY: number;
   listData: IItem<IPropsListItem>[];
 }
 
 interface IInnerData {
-  current: number; // 内部记录 origin index
   distanceX: number;
   distanceY: number;
   identifier: number;
@@ -57,13 +56,12 @@ type IDragProps = React.PropsWithChildren<{
 
 const Drag: React.FC<IDragProps> = (props) => {
   const [state, setState] = React.useState<IState>({
-    selected: 0,
+    current: -1,
     translateX: 0,
     translateY: 0,
     listData: [],
   });
   const { current: _baseData } = React.useRef<IInnerData>({
-    current: -1,
     distanceX: 0,
     distanceY: 0,
     identifier: -1,
@@ -139,8 +137,6 @@ const Drag: React.FC<IDragProps> = (props) => {
     // 如果已经在 drag 中则返回, 防止多指触发 drag 动作, touchstart 事件中有效果
     if (_baseData.isDragging) return;
     _baseData.isDragging = true;
-  
-    _baseData.current = originIndex;
 
     const offsetX = getOffsetX(realIndex) * _baseData.itemWidth;
     const offsetY = getOffsetY(realIndex) * _baseData.itemHeight;
@@ -150,7 +146,7 @@ const Drag: React.FC<IDragProps> = (props) => {
 
     setState({
       ...state,
-      selected: realIndex,
+      current: originIndex,
       translateX: props.columns === 1 ? 0 : offsetX,
       translateY: offsetY,
     })
@@ -189,7 +185,7 @@ const Drag: React.FC<IDragProps> = (props) => {
       translateY: tranY,
     })
     
-    const currentItem = state.listData[_baseData.current];
+    const currentItem = state.listData[state.current];
     const sourceIndex = currentItem.sortIndex;
     const curX = Math.round(tranX / _baseData.itemWidth);
     const curY = Math.round(tranY / _baseData.itemHeight);
@@ -207,8 +203,7 @@ const Drag: React.FC<IDragProps> = (props) => {
   const reset = () => {
     _baseData.previousMove = '';
     _baseData.isDragging = false;
-    _baseData.current = -1;
-    setState({ ...state, selected: -1 })
+    setState({ ...state, current: -1 })
   };
   
   const onTouchEnd = (event: TouchEvent) => {
@@ -268,13 +263,13 @@ const Drag: React.FC<IDragProps> = (props) => {
             key={index}
             className={classnames({
               'fish-drag-item': true,
-              'fish-drag-item__upper': item.index === state.selected,
-              'fish-drag-item__transition': props.transition && item.index !== state.selected
+              'fish-drag-item__upper': item.index === state.current,
+              'fish-drag-item__transition': props.transition && item.index !== state.current
             })}
             style={{
               width: `${100 / props.columns!}%`,
               height: pxTransform(props.itemHeight!),
-              transform: item.index === state.selected ? 
+              transform: item.index === state.current ? 
                 `translateX(${state.translateX}px) translateY(${state.translateY}px)` : `translateX(${item.tranX}) translateY(${item.tranY})`
             }}
             onLongPress={(e) => onLongPress(e, index)}
