@@ -282,7 +282,7 @@ const Drag: React.FC<IDragProps> = (props) => {
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
           >
-            {props.renderItem?.(item)}
+            {props.renderItem?.(item.data)}
           </View>
         ))
       }
