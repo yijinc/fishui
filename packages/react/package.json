@@ -1,6 +1,6 @@
 {
   "name": "@taropui/react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "taropui for react",
   "keywords": [
     "taro",
@@ -22,6 +22,11 @@
     }
   },
   "typings": "./lib/index.d.ts",
+  "style": "./lib/style/style.css",
+  "sideEffects": [
+    "*.scss",
+    "*.css"
+  ],
   "bugs": {
     "url": "https://github.com/yijinc/taropui/issues"
   },
