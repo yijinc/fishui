@@ -23,7 +23,6 @@ interface IState {
   lineWidth: number;
   lineTranX: number;
   scrollLeft: number;
-  firstInit: boolean;
 };
 
 const Tab: React.FC<ITabProps> = (props) => {
@@ -40,9 +39,10 @@ const Tab: React.FC<ITabProps> = (props) => {
   const [state, setState] = React.useState<IState>({
     lineWidth: 0,
     lineTranX: 0,
-    scrollLeft: 0,
-    firstInit: true,
+    scrollLeft: 0
   });
+
+  const [firstInit, setFirstInit] = React.useState<boolean>(true);
 
   const handleClick = async (index: number) => {
     const targetTab = props.tabList[index];
@@ -57,20 +57,20 @@ const Tab: React.FC<ITabProps> = (props) => {
   const getLayout = () => {
     const item = _.tabItems[props.current];
     if (!item) return;
-    setState({
-      ...state,
-      lineWidth: item.width,
-      lineTranX: item.left,
-    })
+
+    const nextState = { ...state };
+    nextState.lineWidth = item.width;
+    nextState.lineTranX = item.left;
     if (props.scrollable) {
       // 保持滚动后当前 item '尽可能' 在屏幕中间
       if (_.rerenderList) {
-        setState({ ...state, scrollLeft: state.scrollLeft + 0.001 }); // invoke rerender
+        nextState.scrollLeft += 0.001; // invoke rerender
         _.rerenderList = false;
       } else {
-        setState({ ...state, scrollLeft: Math.max(item.left - (_.scrollWidth - item.width) / 2, 0) });
+        nextState.scrollLeft = Math.max(item.left - (_.scrollWidth - item.width) / 2, 0);
       }
     }
+    setState(nextState);
   };
   
   const init = () => {
@@ -78,23 +78,24 @@ const Tab: React.FC<ITabProps> = (props) => {
     Promise.all([
       execSelectQuery(createSelectorQuery().select(`#${props.id}`).boundingClientRect()),
       execSelectQuery(createSelectorQuery().selectAll(`#${props.id} .fish-tabs__item-text`).boundingClientRect()),
-    ]).then(([container, items]) => {
+    ]).then(([container, _items]) => {
+      const items = _items as NodesRef.BoundingClientRectCallbackResult[];
       _.scrollWidth = (container as NodesRef.BoundingClientRectCallbackResult).width;
       if (_.rerenderList) {
         const previousFirstItem = _.tabItems[0];
         if (!previousFirstItem) {
-          _.tabItems = items as NodesRef.BoundingClientRectCallbackResult[];
+          _.tabItems = items;
           _.rerenderList = false;
         } else {
           const distanceLeft = items[0].left - previousFirstItem.left;
-          _.tabItems = (items as NodesRef.BoundingClientRectCallbackResult[]).map(v => ({ ...v, left: v.left - distanceLeft }));
+          _.tabItems = items.map(v => ({ ...v, left: v.left - distanceLeft }));
         }
       } else {
-        _.tabItems = (items as NodesRef.BoundingClientRectCallbackResult[]);
+        _.tabItems = items;
       }
       getLayout();
-      if (state.firstInit) {
-        setTimeout(() => setState({ ...state, firstInit: false }), 300);
+      if (firstInit) {
+        setTimeout(() => setFirstInit(false), 300);
       }
     });
   };
@@ -147,7 +148,7 @@ const Tab: React.FC<ITabProps> = (props) => {
             style={{
               width: `${state.lineWidth}px`,
               transform: `translateX(${state.lineTranX}px)`,
-              transition: `${state.firstInit ? 'unset' : '' }`
+              transition: `${firstInit ? 'unset' : '' }`
             }}
           />
         </View>
