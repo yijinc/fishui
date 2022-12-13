@@ -26,27 +26,27 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      max-width: 180px;
+      max-width: 360px;
       overflow: hidden;
       text-overflow: ellipsis;
       text{
-        font-size: 18px;
+        font-size: 36px;
         font-weight: 500;
-        line-height: 18px;
+        line-height: 36px;
         white-space: nowrap;
       }
     }
   }
 
   &__icon {
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
   }
 
  &__goback {
     height: 100%;
-    padding-left: 16px;
-    padding-right: 32px;
+    padding-left: 32px;
+    padding-right: 64px;
     display: flex;
     align-items: center;
   }
