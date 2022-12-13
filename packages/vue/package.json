@@ -1,6 +1,6 @@
 {
   "name": "@taropui/vue",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "taropui for vue",
   "keywords": [
     "taro",
@@ -21,6 +21,11 @@
     }
   },
   "typings": "./lib/index.d.ts",
+  "style": "./lib/style/style.css",
+  "sideEffects": [
+    "*.scss",
+    "*.css"
+  ],
   "bugs": {
     "url": "https://github.com/yijinc/taropui/issues"
   },

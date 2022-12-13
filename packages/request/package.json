@@ -1,6 +1,6 @@
 {
   "name": "@taropui/request",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "request for taro",
   "keywords": [
     "axios",
@@ -9,7 +9,10 @@
   ],
   "author": "yijinc <yijinc@qq.com>",
   "homepage": "https://github.com/yijinc/taropui",
-  "files": ["lib", "types"],
+  "files": [
+    "lib",
+    "types"
+  ],
   "main": "./lib/index.js",
   "module": "./lib/index.js",
   "type": "module",
