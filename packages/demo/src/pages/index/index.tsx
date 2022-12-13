@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro';
-import { View, Image } from '@tarojs/components';
+import { View, Image, Text } from '@tarojs/components';
 import styles from './styles.module.scss';
 
 definePageConfig({
@@ -9,6 +9,7 @@ definePageConfig({
 });
 
 const list = [
+  { title: 'Navbar', path: '/pages/navbar/index' },
   { title: 'Tab', path: '/pages/tab/index' },
   { title: 'Scroll', path: '/pages/scroll/index' },
   { title: 'Drag', path: '/pages/drag/index' },
@@ -17,10 +18,11 @@ const list = [
 
 const navigate = (url) => Taro.navigateTo({ url });
 const logoURL = 'https://img.souche.com/bolt/4aEPNxR0gh8-B5Vz_UtU6/image.png';
+const title = 'taropui 是一套基于Taro的小程序组件';
 
 export default () => {
   Taro.useShareAppMessage(() => ({
-    title: 'miniui组件库 - 一套基于Taro + Vue3的小程序组件合集，支持Typescript',
+    title,
     imageUrl: logoURL,
   }));
 
@@ -30,7 +32,7 @@ export default () => {
         <Image src={logoURL} />
       <View className={styles.info}>
         <View className={styles.title}>taropui</View>
-        <View>一套基于Taro + Vue3的小程序组件合集，支持Typescript</View>
+        <View>{title}，<Text selectable>https://github.com/yijinc/taropui</Text></View>
       </View>
     </View>
     <View className={styles.item} style={{ borderTop: 0, fontWeight: 600 }}>组件列表</View>

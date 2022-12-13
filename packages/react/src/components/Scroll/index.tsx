@@ -26,9 +26,7 @@ type IScrollProps = React.PropsWithChildren<{
   onScroll?: (event: BaseEventOrig<ScrollViewProps.onScrollDetail>) => void;
 }>;
 
-const dummyRequest = (ms?: number) => new Promise(resolve => { setTimeout(resolve, typeof ms === 'number' ? ms : 1000) });
-
-const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (props, ref) => {
+interface IState {
   /**
    * 0: default waiting pull “下拉刷新”
    * 1: 达到下拉刷新阈值  “松手更新”
@@ -37,11 +35,19 @@ const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (p
    * 4: show success bar "刷新成功"
    * 5: hide success bar
   */
-  const [refreshStatus, setRefreshStatus] = React.useState<0|1|2|3|4|5>(0);
-  // 下拉加载更多 加载中
-  const [isMoreLoading, setIsMoreLoading] = React.useState<boolean>(false);
-  // 父组件 调用 ref.refresh() 刷新
-  const [flush, setFlush] = React.useState<boolean>(false);
+  refreshStatus: 0|1|2|3|4|5;
+  isMoreLoading: boolean; // 下拉加载更多 加载中
+  flush: boolean; // 父组件 调用 ref.refresh() 刷新
+};
+
+const dummyRequest = (ms?: number) => new Promise(resolve => { setTimeout(resolve, typeof ms === 'number' ? ms : 1000) });
+
+const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (props, ref) => {
+  const [state, setState] = React.useState<IState>({
+    refreshStatus: 0,
+    isMoreLoading: false,
+    flush: false,
+  });
 
   const { current: _ } = React.useRef<{ scrollHeight: number; timer: any; }>({
     scrollHeight: 0,
@@ -53,40 +59,40 @@ const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (p
   }));
 
   const onRefresherPulling = (e: IRefreshEvent) => {
-    if (refreshStatus > 1) return;
+    if (state.refreshStatus > 1) return;
     const status = e.detail.dy > props.refresherThreshold! ? 1 : 0;
-    if (refreshStatus !== status) {
-      setRefreshStatus(status)
+    if (state.refreshStatus !== status) {
+      setState({ ...state, refreshStatus: status })
     }
   };
   
   const onScrollToLower = async () => {
     if(!props.hasmore) return;
-    if (isMoreLoading) return;
-    setIsMoreLoading(true);
+    if (state.isMoreLoading) return;
+    setState({ ...state, isMoreLoading: true })
     await Promise.all([props.loadmore?.(), dummyRequest(100)]);
-    setIsMoreLoading(false);
+    setState({ ...state, isMoreLoading: false })
   };
   
   const reset = () => {
-    setRefreshStatus(0);
+    setState({ ...state, refreshStatus: 0 })
   };
   
   const onRefresherRefresh = async (e?: IRefreshEvent) => {
-    if (refreshStatus === 2) return;
+    if (state.refreshStatus === 2) return;
     if (!e || e.type !== 'refresherrefresh') {
-      setFlush(true);
+      setState({ ...state, flush: true })
     }
-    setRefreshStatus(2);
+    setState({ ...state, refreshStatus: 2 })
     await Promise.all([props.refresh?.(), dummyRequest(100)]);
-    setFlush(false);
-    setRefreshStatus(3);
+    setState({ ...state, flush: false })
+    setState({ ...state, refreshStatus: 3 })
     clearTimeout(_.timer);
     if (props.showSuccess) {
       _.timer = setTimeout(() => {
-        setRefreshStatus(4);
+        setState({ ...state, refreshStatus: 4 })
         _.timer = setTimeout(() => {
-          setRefreshStatus(5);
+          setState({ ...state, refreshStatus: 5 })
           _.timer = setTimeout(reset, 360); 
         }, 1500);
       }, 20);
@@ -146,7 +152,7 @@ const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (p
       refresherEnabled={props.refresherEnabled}
       refresherThreshold={props.refresherThreshold}
       refresherBackground={props.refresherBackground}
-      refresherTriggered={refreshStatus === 2}
+      refresherTriggered={state.refreshStatus === 2}
       onScrollToLower={onScrollToLower}
       onRefresherPulling={onRefresherPulling}
       onRefresherRefresh={onRefresherRefresh}
@@ -155,11 +161,11 @@ const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (p
       onScroll={onScroll}
     >
       <View
-        className={classnames({ 'fish-scroll__refresher': true, 'fish-scroll__refresher-flush': flush })}
+        className={classnames({ 'fish-scroll__refresher': true, 'fish-scroll__refresher-flush': state.flush })}
         style={{ height: props.refresherThreshold + 'px', top: -props.refresherThreshold! + 'px' }}
       >
         {
-          refreshStatus === 2 && (
+          state.refreshStatus === 2 && (
             <Block>
               <LoadingIcon />
               <Text class='fish-scroll__refresher-text'>加载中...</Text>
@@ -167,25 +173,25 @@ const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (p
           )
         }
         {
-          refreshStatus < 2 && <Block>
-            <ArrowIcon className={classnames({'rotate': refreshStatus === 1})} />
-            <Text class='fish-scroll__refresher-text'>{ refreshStatus === 1 ? '释放刷新': '下拉刷新' }</Text>
+          state.refreshStatus < 2 && <Block>
+            <ArrowIcon className={classnames({'rotate': state.refreshStatus === 1})} />
+            <Text class='fish-scroll__refresher-text'>{ state.refreshStatus === 1 ? '释放刷新': '下拉刷新' }</Text>
           </Block>
         }
       </View>
       {
-        props.showSuccess && refreshStatus >= 3 && (
+        props.showSuccess && state.refreshStatus >= 3 && (
           <View
             className={classnames({
               'fish-scroll__success': true,
-              'fish-scroll__success-show': refreshStatus >= 4,
-              'fish-scroll__success-hide': refreshStatus === 5,
+              'fish-scroll__success-show': state.refreshStatus >= 4,
+              'fish-scroll__success-hide': state.refreshStatus === 5,
             })}
             style={{ height: props.refresherThreshold + 'px' }}
           >
             <View className={classnames({
               'fish-scroll__success-bar': true,
-              'fish-scroll__success-bar-show': refreshStatus >= 4,
+              'fish-scroll__success-bar-show': state.refreshStatus >= 4,
             })}
             >
               { props.successText }
@@ -194,12 +200,12 @@ const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (p
         )
       }
       { props.children }
-      <View style={{ display: isMoreLoading ? '' : 'none' }} className='fish-scroll__loadmore'>
+      <View style={{ display: state.isMoreLoading ? '' : 'none' }} className='fish-scroll__loadmore'>
         <LoadingIcon />
         <Text className='fish-scroll__refresher-text'>加载中...</Text>
       </View>
       {
-        (!props.hasmore && !isMoreLoading) && (
+        (!props.hasmore && !state.isMoreLoading) && (
           <View className='fish-scroll__loadmore'>{props.loadallText}</View>
         )
       }

@@ -15,6 +15,7 @@
     image {
       width: 128px;
       height: 128px;
+      flex-shrink: 0;
     }
     .info {
       padding-left: 40px;

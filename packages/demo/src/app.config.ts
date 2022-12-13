@@ -4,7 +4,8 @@ export default defineAppConfig({
     'pages/drag/index',
     'pages/drag-x/index',
     'pages/tab/index',
-    'pages/scroll/index'
+    'pages/scroll/index',
+    'pages/navbar/index'
   ],
   window: {
     backgroundTextStyle: 'light',
