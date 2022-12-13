@@ -9,7 +9,7 @@
     "css": "sass"
   },
   "scripts": {
-    "start": "npm run build:weapp -- --watch",
+    "start": "taro build --type weapp --watch",
     "build": "taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
@@ -40,7 +40,9 @@
     "@tarojs/plugin-platform-qq": "3.5.8",
     "@tarojs/plugin-platform-swan": "3.5.8",
     "@tarojs/plugin-platform-tt": "3.5.8",
-    "@tarojs/plugin-platform-weapp": "3.5.8"
+    "@tarojs/plugin-platform-weapp": "3.5.8",
+    "@taropui/react": "*",
+    "@taropui/request": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",

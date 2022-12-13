@@ -11,6 +11,8 @@ specifiers:
   '@tarojs/plugin-platform-tt': 3.5.8
   '@tarojs/plugin-platform-weapp': 3.5.8
   '@tarojs/webpack5-runner': 3.5.8
+  '@taropui/react': '*'
+  '@taropui/request': '*'
   '@types/react': ^18.0.26
   '@types/webpack-env': ^1.13.6
   react-refresh: ^0.11.0
@@ -23,6 +25,8 @@ dependencies:
   '@tarojs/plugin-platform-swan': 3.5.8_@types+react@18.0.26
   '@tarojs/plugin-platform-tt': 3.5.8_@types+react@18.0.26
   '@tarojs/plugin-platform-weapp': 3.5.8_@types+react@18.0.26
+  '@taropui/react': 1.0.2
+  '@taropui/request': 1.0.0
 
 devDependencies:
   '@babel/core': 7.20.5
@@ -2002,6 +2006,14 @@ packages:
       - vue
       - webpack-cli
     dev: true
+
+  /@taropui/react/1.0.2:
+    resolution: {integrity: sha512-mAtD96GzfENtQvs6v7FiiSSmX5ka3AaxsiCWskn2kkvt4s/ebNsEVsO8obf1VgpLQStwUo5o1OWxL/+Hb+0HvA==}
+    dev: false
+
+  /@taropui/request/1.0.0:
+    resolution: {integrity: sha512-7eMFquTbvDWavHCvEZ8A3uHQbleTfa519XdxxLGMyZmvZVATb/+MmDIowWPdmK6zGAaUnP+5CQzDc4CoAAJ0iw==}
+    dev: false
 
   /@trysound/sax/0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}

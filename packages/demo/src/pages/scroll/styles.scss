@@ -1,0 +1,49 @@
+.scroll-page {
+  background-color: #F5F5F9;
+  height: 100vh;
+  font-family: PingFang SC, Microsoft YaHei, Helvetica, Hiragino Sans GB, SimSun, sans-serif;
+  .list-wrap {
+    height: 100vh;
+    .item {
+      &-wrap {
+        display: flex;
+        padding: 20px;
+        font-size: 28px;
+        background-color: #fff;
+        margin-top: 20px;
+
+        .text {
+          &-title {
+            font-size: 32px;
+            font-weight: 600;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            word-break: break-all;
+          }
+          &-desc {
+            color: #666;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+            word-break: break-all;
+          }
+        }
+      }
+      &-avatar {
+        width: 240px;
+        height: 240px;
+        flex-shrink: 0;
+      }
+      &-info {
+        flex-grow: 1;
+        padding-left: 20px;
+      }
+      &-row {
+        display: row;
+      }
+    }
+  }
+}

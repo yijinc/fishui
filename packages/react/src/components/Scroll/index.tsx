@@ -166,16 +166,16 @@ const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (p
       >
         {
           state.refreshStatus === 2 && (
-            <Block v-if='state.refreshStatus === 2'>
-              <loading-icon />
-              <Text class='fish-scroll__refresher-Text'>加载中...</Text>
+            <Block>
+              <LoadingIcon />
+              <Text class='fish-scroll__refresher-text'>加载中...</Text>
             </Block>
           )
         }
         {
           state.refreshStatus < 2 && <Block>
             <ArrowIcon className={classnames({'rotate': state.refreshStatus === 1})} />
-            <Text class='fish-scroll__refresher-Text'>{ state.refreshStatus === 1 ? '释放刷新': '下拉刷新' }</Text>
+            <Text class='fish-scroll__refresher-text'>{ state.refreshStatus === 1 ? '释放刷新': '下拉刷新' }</Text>
           </Block>
         }
       </View>
@@ -200,9 +200,9 @@ const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (p
         )
       }
       { props.children }
-      <View style={{ display: state.isMoreLoading ? 'block' : 'none' }} className='fish-scroll__loadmore'>
+      <View style={{ display: state.isMoreLoading ? '' : 'none' }} className='fish-scroll__loadmore'>
         <LoadingIcon />
-        <Text className='fish-scroll__refresher-Text'>加载中...</Text>
+        <Text className='fish-scroll__refresher-text'>加载中...</Text>
       </View>
       {
         (!props.hasmore && !state.isMoreLoading) && (
