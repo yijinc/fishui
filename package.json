@@ -22,6 +22,7 @@
     "@tarojs/shared": "3.5.8",
     "@tarojs/taro": "3.5.8",
     "@tarojs/taro-h5": "3.5.8",
+    "classnames": "^2.3.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

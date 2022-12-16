@@ -21,6 +21,7 @@ importers:
       '@vitejs/plugin-vue': ^3.2.0
       '@vitejs/plugin-vue-jsx': ^2.1.1
       babel-preset-taro: 3.5.8
+      classnames: ^2.3.2
       eslint: ^8.12.0
       eslint-config-taro: 3.5.8
       eslint-plugin-import: ^2.12.0
@@ -45,6 +46,7 @@ importers:
       '@tarojs/shared': 3.5.8
       '@tarojs/taro': 3.5.8
       '@tarojs/taro-h5': 3.5.8
+      classnames: 2.3.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:

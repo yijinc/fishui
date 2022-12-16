@@ -2,11 +2,9 @@ lockfileVersion: 5.4
 
 specifiers:
   '@types/react': ^18.0.26
-  classnames: ^2.3.2
 
 devDependencies:
   '@types/react': 18.0.26
-  classnames: 2.3.2
 
 packages:
 
@@ -24,10 +22,6 @@ packages:
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
-    dev: true
-
-  /classnames/2.3.2:
-    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
     dev: true
 
   /csstype/3.1.1:
