@@ -24,8 +24,8 @@
   </view>
 </template>
 <script lang="ts" setup>
-import { defineProps, defineEmits, withDefaults, provide, reactive, computed, watch, useSlots, h, Fragment } from 'vue';
-import type { ComputedRef, CSSProperties, VNode } from 'vue'; // eslint-disable-line no-duplicate-imports
+import { defineProps, defineEmits, withDefaults, reactive, computed, watch, useSlots, h, Fragment } from 'vue';
+import type { CSSProperties, VNode } from 'vue';
 import Taro from '@tarojs/taro';
 import { execSelectQuery } from '../../utils';
 
@@ -222,7 +222,5 @@ watch(() => props.current, (newCurrent, preCurrent) => {
   }
   moveTo(newCurrent);
 });
-
-provide<ComputedRef<ISwiperProps>>('swiperProps', computed(() => props));
 
 </script>
