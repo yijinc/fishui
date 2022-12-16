@@ -130,7 +130,9 @@ const moveTo = (index: number) => {
     state.currentIndex = targetIndex;
     state.from = Math.max(targetIndex - props.slidesPerView, 0);
     state.to = Math.min(targetIndex + props.slidesPerView, maxLen - 1);
-    emit('change', targetIndex);
+    if (targetIndex !== props.current) {
+      emit('change', targetIndex);
+    }
   }
 };
 
@@ -145,7 +147,6 @@ const onTouchStart = (event: TouchEvent) => {
 };
 
 const onTouchMove = (event: TouchEvent) => {
-  // console.log('onTouchMove', event);
   const iTouch = event.touches[0];
   if (!iTouch || !state.isMoving) return;
   const offsetX = iTouch.pageX - _.startX;
@@ -165,7 +166,6 @@ const onTouchMove = (event: TouchEvent) => {
 };
 
 const onTouchEnd = (event: TouchEvent) => {
-  // console.log('onTouchEnd', event);
   if (!state.isMoving) return;
   const iTouch = event.changedTouches[0];
   if (!iTouch) return;
