@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { View, Button } from '@tarojs/components';
-import { Tab } from '@taropui/react';
+import { Tab } from '@fishui/taro-react';
 import styles from './styles.module.scss';
 
 definePageConfig({

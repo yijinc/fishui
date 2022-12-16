@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "taropui",
+  "projectname": "fishui",
   "description": "常用的小程序ui组件库 基于Taro",
   "appid": "wx81128fb648a2925c",
   "setting": {

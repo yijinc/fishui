@@ -1,5 +1,5 @@
 import { View, Text } from '@tarojs/components';
-import { Navbar } from '@taropui/react';
+import { Navbar } from '@fishui/taro-react';
 
 definePageConfig({
   navigationBarTitleText: 'Navbar',
@@ -11,7 +11,7 @@ definePageConfig({
 export default () => {
   return (
     <View>
-      <Navbar hideBack title='Taropui' backgroundColor='red' color='white' />
+      <Navbar hideBack title='fishui' backgroundColor='red' color='white' />
 
       <Navbar
         renderTitle={() => <Text>自定义<Text style={{ color: 'blue' }}>标题</Text></Text>}

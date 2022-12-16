@@ -4,7 +4,7 @@
 ## 安装
 
 ```base
-npm add @taropui/request
+npm add @fishui/taro-request
 ```
 
 ## 使用
@@ -12,7 +12,7 @@ npm add @taropui/request
 ### 直接使用
 
 ```js
-import request from '@taropui/request';
+import request from '@fishui/taro-request';
 
 request({ url: 'https://api.example.com/user', method: 'POST', data: { user: 1 } })
 // or
@@ -22,7 +22,7 @@ request.post('https://api.example.com/user', { data })
 ### 创建新的实例
 
 ```js
-import { createRequest } from '@taropui/request';
+import { createRequest } from '@fishui/taro-request';
 
 const request = createRequest({
   baseURL: 'https://api.example.com',

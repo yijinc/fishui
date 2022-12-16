@@ -1,14 +1,14 @@
 {
-  "name": "taropui",
+  "name": "fishui",
   "version": "1.0.0",
-  "description": "taropui",
+  "description": "fishui",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yijinc/taropui"
+    "url": "https://github.com/yijinc/fishui"
   },
   "author": "fish",
   "license": "ISC",

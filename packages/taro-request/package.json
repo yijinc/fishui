@@ -1,6 +1,6 @@
 {
-  "name": "@taropui/request",
-  "version": "1.1.0",
+  "name": "@fishui/taro-request",
+  "version": "1.0.0",
   "description": "request for taro",
   "keywords": [
     "axios",
@@ -8,7 +8,7 @@
     "taro"
   ],
   "author": "yijinc <yijinc@qq.com>",
-  "homepage": "https://github.com/yijinc/taropui",
+  "homepage": "https://github.com/yijinc/fishui",
   "files": [
     "lib",
     "types"
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yijinc/taropui"
+    "url": "https://github.com/yijinc/fishui"
   },
   "license": "ISC",
   "publishConfig": {

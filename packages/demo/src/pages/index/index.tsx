@@ -3,7 +3,7 @@ import { View, Image, Text } from '@tarojs/components';
 import styles from './styles.module.scss';
 
 definePageConfig({
-  navigationBarTitleText: 'taropui',
+  navigationBarTitleText: 'fishui',
   enableShareAppMessage: true,
   enableShareTimeline: true,
 });
@@ -18,7 +18,7 @@ const list = [
 
 const navigate = (url) => Taro.navigateTo({ url });
 const logoURL = 'https://img.souche.com/bolt/4aEPNxR0gh8-B5Vz_UtU6/image.png';
-const title = 'taropui 是一套基于Taro的小程序组件';
+const title = 'fishui 是一套基于Taro的小程序组件';
 
 export default () => {
   Taro.useShareAppMessage(() => ({
@@ -31,8 +31,8 @@ export default () => {
       <View className={styles.flex}>
         <Image src={logoURL} />
       <View className={styles.info}>
-        <View className={styles.title}>taropui</View>
-        <View>{title}，<Text selectable>https://github.com/yijinc/taropui</Text></View>
+        <View className={styles.title}>fishui</View>
+        <View>{title}，<Text selectable>https://github.com/yijinc/fishui</Text></View>
       </View>
     </View>
     <View className={styles.item} style={{ borderTop: 0, fontWeight: 600 }}>组件列表</View>

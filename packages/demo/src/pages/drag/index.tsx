@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Taro from '@tarojs/taro';
 import { View, Text, Button, Slider } from '@tarojs/components';
-import { Drag }  from '@taropui/react';
+import { Drag }  from '@fishui/taro-react';
 import styles from './styles.module.scss'
 
 definePageConfig({

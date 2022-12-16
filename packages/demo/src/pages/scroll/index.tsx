@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { View, Image, Text } from '@tarojs/components';
-import { Scroll } from '@taropui/react';
-import request from '@taropui/request';
+import { Scroll } from '@fishui/taro-react';
+import request from '@fishui/taro-request';
 import './styles.scss'
 
 definePageConfig({

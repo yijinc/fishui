@@ -1,16 +1,17 @@
 {
-  "name": "@taropui/vue",
-  "version": "1.1.1",
-  "description": "taropui for vue",
+  "name": "@fishui/taro-react",
+  "version": "1.0.0",
+  "description": "fishui for react",
   "keywords": [
     "taro",
-    "vue",
-    "vue3"
+    "react"
   ],
   "author": "yijinc <yijinc@qq.com>",
-  "homepage": "https://github.com/yijinc/taropui",
+  "homepage": "https://github.com/yijinc/fishui",
   "license": "ISC",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "main": "./lib/index.umd.js",
   "module": "./lib/index.js",
   "type": "module",
@@ -27,11 +28,11 @@
     "*.css"
   ],
   "bugs": {
-    "url": "https://github.com/yijinc/taropui/issues"
+    "url": "https://github.com/yijinc/fishui/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yijinc/taropui"
+    "url": "https://github.com/yijinc/fishui"
   },
   "scripts": {
     "dev": "vite build",
@@ -43,10 +44,8 @@
     "ios >= 8"
   ],
   "devDependencies": {
-    "@babel/core": "^7.20.5",
-    "@tarojs/plugin-framework-vue3": "3.5.8",
-    "@vue/babel-plugin-jsx": "^1.0.6",
-    "vue": "3.2.45"
+    "@types/react": "^18.0.26",
+    "classnames": "^2.3.2"
   },
   "publishConfig": {
     "access": "public"

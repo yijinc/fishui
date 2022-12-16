@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro';
 import { View } from '@tarojs/components';
-import { DragX }  from '@taropui/react';
+import { DragX }  from '@fishui/taro-react';
 import styles from './styles.module.scss'
 
 definePageConfig({

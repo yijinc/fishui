@@ -1,8 +1,8 @@
 {
-  "name": "@taropui/demo",
+  "name": "@fishui/demo",
   "version": "1.0.0",
   "private": true,
-  "description": "taropui react demo",
+  "description": "fishui react demo",
   "templateInfo": {
     "name": "default",
     "typescript": true,
@@ -41,8 +41,8 @@
     "@tarojs/plugin-platform-swan": "3.5.8",
     "@tarojs/plugin-platform-tt": "3.5.8",
     "@tarojs/plugin-platform-weapp": "3.5.8",
-    "@taropui/react": "*",
-    "@taropui/request": "*"
+    "@fishui/taro-react": "*",
+    "@fishui/taro-request": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
