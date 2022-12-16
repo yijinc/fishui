@@ -22,6 +22,6 @@
       "node_modules/@types"
     ]
   },
-  "include": ["packages/taro-react/src", "./packages/demo/src", "./types"],
+  "include": ["/src", "./types"],
   "compileOnSave": false
 }

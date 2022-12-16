@@ -11,8 +11,6 @@ specifiers:
   '@tarojs/plugin-platform-tt': 3.5.8
   '@tarojs/plugin-platform-weapp': 3.5.8
   '@tarojs/webpack5-runner': 3.5.8
-  '@fishui/taro-react': '*'
-  '@fishui/taro-request': '*'
   '@types/react': ^18.0.26
   '@types/webpack-env': ^1.13.6
   react-refresh: ^0.11.0
@@ -25,8 +23,6 @@ dependencies:
   '@tarojs/plugin-platform-swan': 3.5.8_@types+react@18.0.26
   '@tarojs/plugin-platform-tt': 3.5.8_@types+react@18.0.26
   '@tarojs/plugin-platform-weapp': 3.5.8_@types+react@18.0.26
-  '@fishui/taro-react': 1.1.2
-  '@fishui/taro-request': 1.1.0
 
 devDependencies:
   '@babel/core': 7.20.5
@@ -2007,14 +2003,6 @@ packages:
       - webpack-cli
     dev: true
 
-  /@fishui/taro-react/1.1.2:
-    resolution: {integrity: sha512-J5Pqf1518XeACSoj7ch/3i7zKe1mW4Ns8GUVERK31pQcgviRKj2hi54A6HQ6gGU6Yji5HKFeF4+x0wOHY+pCWQ==}
-    dev: false
-
-  /@fishui/taro-request/1.1.0:
-    resolution: {integrity: sha512-4P91/+/mUar0YVdaPuaa+zvGPU6ti6TQzeNll4Sp3T99+wTe0zXLBEnZ3hfv9Q7tDYmRC1GDP5pKuja+kxtDXQ==}
-    dev: false
-
   /@trysound/sax/0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
@@ -2954,6 +2942,8 @@ packages:
       babel-register: 6.26.0
       babylon: 6.18.0
       require-from-string: 2.0.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /babel-plugin-syntax-class-properties/6.13.0:

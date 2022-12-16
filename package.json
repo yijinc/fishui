@@ -49,8 +49,11 @@
     "vue-eslint-parser": "^9.1.0"
   },
   "workspaces": [
+    "packages/taro-react",
+    "packages/taro-vue",
+    "packages/taro-request",
+    "packages/uni",
     "packages/demo",
-    "packages/react",
-    "packages/vue"
+    "packages/docs"
   ]
 }
