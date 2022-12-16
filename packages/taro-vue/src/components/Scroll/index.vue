@@ -60,7 +60,7 @@
   </scroll-view>
 </template>
 <script lang="ts" setup>
-import { reactive, defineProps, withDefaults, defineExpose } from 'vue';
+import { reactive, defineProps, withDefaults, defineEmits, defineExpose } from 'vue';
 import { useReady, createSelectorQuery, NodesRef } from '@tarojs/taro';
 import type { ScrollViewProps, BaseEventOrig } from '@tarojs/components';
 import { execSelectQuery } from '../../utils';
@@ -105,7 +105,6 @@ const props = withDefaults(defineProps<IProps>(), {
   threshold: 60,
   refresherEnabled: true,
   refresherBackground: '#eeeeee',
-  isRefreshing: false,
   refresherThreshold: 80,
   refresh: () => new Promise(resolve => { setTimeout(resolve, 1000) }),
   loadmore: () => new Promise(resolve => { setTimeout(resolve, 1000) }),

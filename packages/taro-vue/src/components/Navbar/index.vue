@@ -50,9 +50,9 @@ interface IProps {
 const props = withDefaults(defineProps<IProps>(), {
   title: '',
   backIcon: iconPath,
-  color: '',
-  backgroundColor: '',
-  fixed: false,
+  color: '#222222',
+  backgroundColor: '#FFFFFF',
+  fixed: true,
   height: 44,
   hideBack: false,
 });

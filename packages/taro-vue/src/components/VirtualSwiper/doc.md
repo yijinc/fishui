@@ -18,7 +18,7 @@
 </template>
 <script lang="ts" setup>
 import { reactive } from 'vue';
-import { VirtualSwiper, SwiperSlide } from '../../components/virtual-swiper';
+import { VirtualSwiper, SwiperSlide } from '@fishui/taro-vue';
 
 const colors = ['red', 'yellow', 'blue', 'green'];
 const sliders: IItem[] = Array.from(({ length: 10000 })).map((_, index) => ({
