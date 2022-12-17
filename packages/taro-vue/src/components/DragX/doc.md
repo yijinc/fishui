@@ -99,6 +99,4 @@ const onChange = (list) => {
 | ---------------- | ---------------------- | ------------ |
 | item            | 列表每一项 插入 VNode，会将item 作为参数传出    |  (item: ListItem) => VNode  |
 | drag            | 列表每一项 drag 按钮/视图，一般是一个image/icon    |  () => VNode  |
-| before        |  列表前插入的内容         |   |
-| after        |  列表后插入的内容         |   |
 

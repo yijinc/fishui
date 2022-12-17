@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classnames from 'classnames';
-import { pxTransform, useReady, vibrateShort, createSelectorQuery, NodesRef } from '@tarojs/taro';
+import { useReady, vibrateShort, createSelectorQuery, NodesRef } from '@tarojs/taro';
 import { View, ScrollView } from '@tarojs/components';
 import { ITouchEvent } from '@tarojs/components/types';
 import { execSelectQuery } from '../../utils';
@@ -52,8 +52,6 @@ type IDragXProps = React.PropsWithChildren<{
   vibrate?: boolean; // 开始拖拽时震动一下？
   transition?: boolean; //
   trigger?: 'longpress' | 'touchstart'; // 触发拖拽的事件
-  before?: React.ReactNode;
-  after?: React.ReactNode;
   renderItem?: (item: IPropsListItem) => React.ReactNode;
   renderDragItem?: (item: IPropsListItem) => React.ReactNode;
   onChange?: (list: IPropsListItem[]) => void;
@@ -287,8 +285,7 @@ const DragX: React.FC<IDragXProps> = (props) => {
       scrollY
       scrollTop={state.scrollTop}
     >
-      <View id={props.id} className='fish-drag' style={{ height: pxTransform(wrapHeight) }}>
-        {props.before}
+      <View id={props.id} className='fish-drag' style={{ height: `${wrapHeight}px` }}>
         {
           state.listData.map((item, index) => (
             <View
@@ -300,7 +297,7 @@ const DragX: React.FC<IDragXProps> = (props) => {
               })}
               style={{
                 width: `${100 / props.columns!}%`,
-                height: pxTransform(props.itemHeight!),
+                height: `${props.itemHeight}px`,
                 transform: item.index === state.current ? 
                   `translateX(${state.translateX}px) translateY(${state.translateY}px)` : `translateX(${item.tranX}) translateY(${item.tranY})`
               }}
@@ -318,7 +315,6 @@ const DragX: React.FC<IDragXProps> = (props) => {
             </View>
           ))
         }
-        {props.after}
       </View>
     </ScrollView>
   );

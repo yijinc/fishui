@@ -6,8 +6,7 @@
     :scroll-y="true"
     :scroll-top="state.scrollTop"
   >
-    <view class="fish-drag" :style="{ height: pxTransform(wrapHeight) }">
-      <slot name="before" />
+    <view class="fish-drag" :style="{ height: `${wrapHeight}px` }">
       <view
         v-for="item, index in state.listData"
         :key="index"
@@ -18,7 +17,7 @@
         }"
         :style="{
           width: `${100 / props.columns}%`,
-          height: pxTransform(props.itemHeight),
+          height: `${props.itemHeight}px`,
           transform: item.index === state.selected ? 
             `translateX(${state.translateX}px) translateY(${state.translateY}px)` : `translateX(${item.tranX}) translateY(${item.tranY})`
         }"
@@ -34,20 +33,18 @@
           <slot name="drag" />
         </view>
       </view>
-      <slot name="after" />
     </view>
   </scroll-view>
 </template>
 <script lang="ts" setup>
 import { defineProps, withDefaults, defineEmits, reactive, computed, watch } from 'vue';
-import { pxTransform, useReady, getSystemInfoSync, vibrateShort, createSelectorQuery, NodesRef } from '@tarojs/taro';
+import { useReady, getSystemInfoSync, vibrateShort, createSelectorQuery, NodesRef } from '@tarojs/taro';
 import { ITouchEvent } from '@tarojs/components/types';
 import { execSelectQuery } from '../../utils';
 
 interface IPropsListItem {
   [p: string]: any;
   fixed?: boolean;
-  sort?: number; // 用于排序字段
 }
 
 interface IProps {
@@ -102,7 +99,7 @@ const props = withDefaults(defineProps<IProps>(), {
 
 const emit = defineEmits<{
   // eslint-disable-next-line no-unused-vars
-  (e: 'change'|'update:listData', list: IPropsListItem[]): void;
+  (e: 'change', list: IPropsListItem[]): void;
   // eslint-disable-next-line no-unused-vars
   (e: 'dragstart'|'dragend', event: ITouchEvent): void;
 }>();
@@ -295,7 +292,6 @@ const onTouchEnd = (event: TouchEvent) => {
       index: item.sortIndex
     }));
     state.listData = [...listData];
-    emit('update:listData', listData.map(v => ({...v.data, sort: v.index })));
     emit('change', listData.sort((a, b) => a.index - b.index).map(i => ({...i.data})));
   }
 };
@@ -347,11 +343,7 @@ const isEqualListData = (l1: IPropsListItem[], l2: IPropsListItem[]): boolean =>
     return Object.is(a, b);
   };
   if (l1.length !== l2.length) return false;
-  return l1.every((item, index) => {
-    const { sort: _sort1, ...item1 } = item; // eslint-disable-line no-unused-vars
-    const { sort: _srot2, ...item2 } = l2[index]; // eslint-disable-line no-unused-vars
-    return isEqual(item1, item2);
-  });
+  return l1.every((item, index) => isEqual(item, l2[index]));
 };
 
 watch(() => props.itemHeight, render);

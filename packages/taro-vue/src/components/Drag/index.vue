@@ -296,11 +296,7 @@ const isEqualListData = (l1: IPropsListItem[], l2: IPropsListItem[]): boolean =>
     return Object.is(a, b);
   };
   if (l1.length !== l2.length) return false;
-  return l1.every((item, index) => {
-    const { sort: _sort1, ...item1 } = item; // eslint-disable-line no-unused-vars
-    const { sort: _srot2, ...item2 } = l2[index]; // eslint-disable-line no-unused-vars
-    return isEqual(item1, item2);
-  });
+  return l1.every((item, index) => isEqual(item, l2[index]));
 };
 
 watch(() => props.itemHeight, render);
