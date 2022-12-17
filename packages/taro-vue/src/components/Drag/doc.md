@@ -3,7 +3,7 @@
 
 ## 用法
 
-因 Taro 事件存在穿透问题，使用此组件建议禁用页面滚动
+因 Taro 事件存在穿透问题，使用此组件建议禁用页面滚动（for ios）
 
 ```js
 definePageConfig({
@@ -57,7 +57,7 @@ const listData = [
 const state = reactive({
   listData,
   columns: 3,
-	itemHeight: Taro.getSystemInfoSync().windowWidth / 1.5,
+	itemHeight: 125,
 	longpressTrigger: true,
 });
 
@@ -99,6 +99,4 @@ const onChange = (list) => {
 | 名称          | 说明                   | 参数类型     |
 | ---------------- | ---------------------- | ------------ |
 | item            | 列表每一项 插入 VNode，会将item 作为参数传出    |  (item: ListItem) => VNode  |
-| before        |  列表前插入的内容         |   |
-| after        |  列表后插入的内容         |   |
 
