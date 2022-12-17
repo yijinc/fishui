@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classnames from 'classnames';
 import { useReady, createSelectorQuery, NodesRef } from '@tarojs/taro';
-import { ScrollView, View, Block, Text, ScrollViewProps, BaseEventOrig } from '@tarojs/components';
+import { ScrollView, View, Text, ScrollViewProps, BaseEventOrig } from '@tarojs/components';
 import { execSelectQuery } from '../../utils';
 import LoadingIcon from './LoadingIcon';
 import ArrowIcon from './ArrowIcon';
@@ -85,17 +85,17 @@ const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (p
     }
     setState({ ...state, refreshStatus: 2 })
     await Promise.all([props.refresh?.(), dummyRequest(100)]);
-    setState({ ...state, flush: false })
-    setState({ ...state, refreshStatus: 3 })
-    clearTimeout(_.timer);
+    if (state.flush) setState({ ...state, flush: false });
+
     if (props.showSuccess) {
+      setState({ ...state, refreshStatus: 3 });
       _.timer = setTimeout(() => {
-        setState({ ...state, refreshStatus: 4 })
+        setState({ ...state, refreshStatus: 4 });
         _.timer = setTimeout(() => {
-          setState({ ...state, refreshStatus: 5 })
-          _.timer = setTimeout(reset, 360); 
-        }, 1500);
-      }, 20);
+          setState({ ...state, refreshStatus: 5 });
+          _.timer = setTimeout(reset, 500 + 20); 
+        }, 1600);
+      });
     } else {
       _.timer = setTimeout(reset, 100);
     }
@@ -166,17 +166,17 @@ const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (p
       >
         {
           state.refreshStatus === 2 && (
-            <Block>
+            <React.Fragment>
               <LoadingIcon />
               <Text class='fish-scroll__refresher-text'>加载中...</Text>
-            </Block>
+            </React.Fragment>
           )
         }
         {
-          state.refreshStatus < 2 && <Block>
+          state.refreshStatus < 2 && <React.Fragment>
             <ArrowIcon className={classnames({'rotate': state.refreshStatus === 1})} />
             <Text class='fish-scroll__refresher-text'>{ state.refreshStatus === 1 ? '释放刷新': '下拉刷新' }</Text>
-          </Block>
+          </React.Fragment>
         }
       </View>
       {
@@ -184,7 +184,7 @@ const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (p
           <View
             className={classnames({
               'fish-scroll__success': true,
-              'fish-scroll__success-show': state.refreshStatus >= 4,
+              'fish-scroll__success-show': state.refreshStatus >= 3,
               'fish-scroll__success-hide': state.refreshStatus === 5,
             })}
             style={{ height: props.refresherThreshold + 'px' }}

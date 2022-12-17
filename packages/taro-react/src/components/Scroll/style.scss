@@ -29,11 +29,11 @@ $success-bar-height: 32PX;
     width: 100%;
     transition: height .5s ease;
     &-show {
-      height: $success-bar-height !important;
+      height: $success-bar-height !important; // transition height 80 => 32
     }
     &-hide {
       margin-top: -$success-bar-height;
-      transition: margin-top .3s ease;
+      transition: margin-top .5s ease;
     }
     &-bar {
       background-color: #7468F2;
