@@ -1,0 +1,157 @@
+$refresher-height: 80rpx;
+$success-bar-height: 32PX;
+
+.fish-scroll {
+  height: 100%;
+  position: relative;
+
+  &__refresher {
+    position: absolute;
+    width: 100%;
+    height: $refresher-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &-flush {
+      // uniapp  不需要 模拟 flush，触发下拉刷新，会自动将 页面下拉
+      // top: 0 !important;
+      // position: relative;
+    }
+
+    &-text {
+      font-size: 28rpx;
+      color: #999999;
+      margin-left: 8rpx;
+    }
+  }
+
+  &__success {
+    height: $refresher-height; // refresher-success bar
+    width: 100%;
+    transition: height .5s ease;
+    &-show {
+      height: $success-bar-height !important;
+    }
+    &-hide {
+      margin-top: -$success-bar-height;
+      transition: margin-top .3s ease;
+    }
+    &-bar {
+      background-color: #7468F2;
+      color: #ffffff;
+      font-size: 24rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: scale(0);
+      height: $success-bar-height;
+      width: 100%;
+      &-show {
+        transform: scale(1);
+        opacity: 1;
+        transition: opacity .35s linear, transform .35s linear;
+      } 
+    }
+  }
+
+  &__loadmore {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 88rpx;
+    font-size: 28rpx;
+    color: #999999;
+  }
+}
+
+.fish-loading {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 32rpx;
+  height: 32rpx;
+
+  @keyframes fadeDelay {
+    0%, 39%, 100% {
+      opacity: 0.2;
+    }
+    40% {
+      opacity: 1;
+    }
+  }
+
+  &__item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32rpx;
+    height: 32rpx;
+
+    &::before {
+      content: "";
+      display: block;
+      margin: 0 auto;
+      width: 4rpx;
+      height: 8rpx;
+      background-color: #aaaaaa;
+      border-radius: 4rpx;
+      animation: fadeDelay 1.2s infinite;
+    }
+
+    @for $i from 2 through 12 {
+      &:nth-child(#{$i}) {
+        transform: rotate(#{($i - 1) * 30}deg);
+  
+        &:before {
+          animation-delay: #{-1.1 + (($i - 2) / 10)}s;
+        }
+      }
+    }
+  }
+}
+
+.fish-arrow {
+  width: 32rpx;
+  text-align: center;
+
+  &__line {
+    position: relative;
+    border-radius: 4rpx;
+    width: 4rpx;
+    height: 28rpx;
+    background-color: #aaaaaa;
+    transition: transform 0.15s ease-in-out;
+    display: inline-block;
+    vertical-align: middle;
+    &::before {
+      position: absolute;
+      content: "";
+      bottom: -4rpx;
+      right: 50%;
+      width: 4rpx;
+      height: 16rpx;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+      background-color: #aaaaaa;
+      border-radius: 4rpx;
+    }
+  
+    &::after {
+      position: absolute;
+      content: "";
+      bottom: -4rpx;
+      left: 50%;
+      width: 4rpx;
+      height: 16rpx;
+      transform: rotate(-45deg);
+      transform-origin: 0% 100%;
+      background-color: #aaaaaa;
+      border-radius: 4rpx;
+    }
+  }
+
+  &.rotate {
+    transform: rotate(-180deg);
+  }
+}

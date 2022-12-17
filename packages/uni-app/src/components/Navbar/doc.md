@@ -14,16 +14,11 @@
 </template>
 <script lang="ts" setup>
 import { reactive } from 'vue';
-import { Navbar } from '@fishui/taro-vue';
+import { Navbar } from '@fishui/uni-app';
 
 const state = reactive({
   title: "标题",
 });
-
-const onChange = (list) => {
-	console.log('onChange', list);
-	// state.listData = list; // 直接赋值 会重新渲染
-};
 
 </script>
 ```

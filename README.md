@@ -26,7 +26,7 @@ npm add @fishui/taro-vue
 npm add @fishui/taro-react
 
 # or
-npm add @fishui/uni
+npm add @fishui/uni-app
 ```
 
 ## 使用

@@ -1,0 +1,51 @@
+{
+  "name": "@fishui/uni-app",
+  "version": "0.9.0",
+  "description": "fishui for uni-app",
+  "keywords": [
+    "uni-app",
+    "vue",
+    "vue3"
+  ],
+  "author": "yijinc <yijinc@qq.com>",
+  "homepage": "https://github.com/yijinc/fishui",
+  "license": "ISC",
+  "files": ["lib"],
+  "main": "./lib/index.umd.js",
+  "module": "./lib/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./lib/index.umd.js"
+    }
+  },
+  "typings": "./lib/index.d.ts",
+  "style": "./lib/style/style.css",
+  "sideEffects": [
+    "*.scss",
+    "*.css"
+  ],
+  "bugs": {
+    "url": "https://github.com/yijinc/fishui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yijinc/fishui"
+  },
+  "scripts": {
+    "dev": "vite build",
+    "build": "vite build --config config/vite.config.ts && vite build --config config/vite.config.css.ts && vite build --config config/vite.config.disperse.ts"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "devDependencies": {
+    "vue": "3.2.45"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

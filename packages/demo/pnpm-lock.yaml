@@ -2,6 +2,8 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': ^7.20.5
+  '@fishui/taro-react': '*'
+  '@fishui/taro-request': '*'
   '@pmmmwh/react-refresh-webpack-plugin': ^0.5.5
   '@tarojs/cli': 3.5.8
   '@tarojs/plugin-platform-alipay': 3.5.8
@@ -17,6 +19,8 @@ specifiers:
   webpack: 5.69.0
 
 dependencies:
+  '@fishui/taro-react': 0.9.0
+  '@fishui/taro-request': 1.0.0
   '@tarojs/plugin-platform-alipay': 3.5.8_@types+react@18.0.26
   '@tarojs/plugin-platform-jd': 3.5.8_@types+react@18.0.26
   '@tarojs/plugin-platform-qq': 3.5.8_@types+react@18.0.26
@@ -1270,6 +1274,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@fishui/taro-react/0.9.0:
+    resolution: {integrity: sha512-ciGRRF5fmVq2ZCiiR+mVNb0VDXfozmcBEUdlA/mRK/WIoVgaGBj8BsbxURJHQxifVHsdTIxsO9hv9KKgV286iw==}
+    dev: false
+
+  /@fishui/taro-request/1.0.0:
+    resolution: {integrity: sha512-EwB+8uf2h/vIb7KDBi2no+EVXhI2Fkj+ZuqMk2QjeU4iYLNPTyAIoFJwDZ/14zcscJLs4E9kmh+BXTcqsknX6A==}
+    dev: false
 
   /@hapi/hoek/9.3.0:
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
