@@ -1,6 +1,6 @@
 {
   "name": "@fishui/uni-app",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "fishui for uni-app",
   "keywords": [
     "uni-app",
@@ -13,17 +13,7 @@
   "files": [
     "lib"
   ],
-  "main": "./lib/index.umd.js",
-  "module": "./lib/index.js",
-  "type": "module",
-  "exports": {
-    ".": {
-      "import": "./lib/index.js",
-      "require": "./lib/index.umd.js"
-    }
-  },
-  "typings": "./lib/index.d.ts",
-  "style": "./lib/style/style.css",
+  "style": "./lib/style.scss",
   "sideEffects": [
     "*.scss",
     "*.css"

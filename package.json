@@ -52,7 +52,7 @@
     "packages/taro-react",
     "packages/taro-vue",
     "packages/taro-request",
-    "packages/uni",
+    "packages/uni-app",
     "packages/demo",
     "packages/docs"
   ]
