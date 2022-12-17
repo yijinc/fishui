@@ -19,7 +19,7 @@ specifiers:
   webpack: 5.69.0
 
 dependencies:
-  '@fishui/taro-react': 0.9.0
+  '@fishui/taro-react': 1.0.1
   '@fishui/taro-request': 1.0.0
   '@tarojs/plugin-platform-alipay': 3.5.8_@types+react@18.0.26
   '@tarojs/plugin-platform-jd': 3.5.8_@types+react@18.0.26
@@ -1275,8 +1275,8 @@ packages:
       - supports-color
     dev: true
 
-  /@fishui/taro-react/0.9.0:
-    resolution: {integrity: sha512-ciGRRF5fmVq2ZCiiR+mVNb0VDXfozmcBEUdlA/mRK/WIoVgaGBj8BsbxURJHQxifVHsdTIxsO9hv9KKgV286iw==}
+  /@fishui/taro-react/1.0.1:
+    resolution: {integrity: sha512-ijrv7XsKn+LYMFc+zpzdph3Fy0ccqWHZ7qBecsA9LaGmZkdYVRsm1Nqep/u0de6gfTWRGFfPCYRSywEnQ3ipww==}
     dev: false
 
   /@fishui/taro-request/1.0.0:
@@ -2954,8 +2954,6 @@ packages:
       babel-register: 6.26.0
       babylon: 6.18.0
       require-from-string: 2.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /babel-plugin-syntax-class-properties/6.13.0:

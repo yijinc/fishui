@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Taro from '@tarojs/taro';
-import { View, Text, Button, Slider } from '@tarojs/components';
+import { View, Text, Button, Slider, Image } from '@tarojs/components';
 import { Drag }  from '@fishui/taro-react';
 import styles from './styles.module.scss'
 
@@ -13,40 +13,56 @@ definePageConfig({
 
 interface IListItem {
   key: string;
+  path: string;
   backgroundColor: string;
   fixed: boolean;
 }
 
 const listData: IListItem[] = [
-	{ key: '0', backgroundColor: 'red', fixed: false },
-	{ key: '1', backgroundColor: 'deeppink', fixed: true },
-	{ key: '2', backgroundColor: 'green', fixed: false },
-	{ key: '3', backgroundColor: 'orange', fixed: false },
-	{ key: '4', backgroundColor: 'purple', fixed: false },
-	{ key: '5', backgroundColor: 'lime', fixed: false },
-	{ key: '6', backgroundColor: 'blue', fixed: false },
-	{ key: '7', backgroundColor: 'violet', fixed: false },
-	{ key: '8', backgroundColor: 'cyan', fixed: false },
-	{ key: '9', backgroundColor: 'gold', fixed: false }
+	{ key: '0', path: 'https://img.souche.com/bolt/D8VdjusNDi15fbtX-Gqp0/lufei2.jpg', backgroundColor: 'red', fixed: false },
+	{ key: '1', path: 'https://img.souche.com/bolt/CamGvSVaPMeC3h2Qlv4Uv/lufei9.jpg', backgroundColor: 'deeppink', fixed: true },
+	{ key: '2', path: 'https://img.souche.com/bolt/d7E95SUz7pCzy3fs5QQOg/lufei5.jpg',  backgroundColor: 'green', fixed: false },
+	{ key: '3', path: 'https://img.souche.com/bolt/SE_sgFvCgn6Z0wSUaFTMk/lufei4.jpg', backgroundColor: 'orange', fixed: false },
+	{ key: '4', path: 'https://img.souche.com/bolt/M4v9qNmwr4twhUhDtvVIJ/lufei3.jpg', backgroundColor: 'purple', fixed: false },
+	{ key: '5', path: 'https://img.souche.com/bolt/dB-2a2V7fz6eXdzjlWT1V/lufei7.jpg', backgroundColor: 'lime', fixed: false },
+	{ key: '6', path: 'https://img.souche.com/bolt/x7DbcKGEVHh2CnUiAvf76/lufei8.jpg', backgroundColor: 'blue', fixed: false },
 ];
 
+const plusItem = {
+  key: 'plus',
+  path: 'https://img.souche.com/bolt/cbpqBOZR_SC8H4dmiwg6A/plus.png',
+  fixed: true,
+}
+
 export default () => {
-  const itemHeight = Taro.getSystemInfoSync().windowWidth / 1.5;
   const [columns, setColumns] = useState<number>(3);
+  const itemHeight = Taro.getSystemInfoSync().windowWidth / columns;
   const [longpressTrigger, setLongpressTrigger] = useState<boolean>(true);
+  const [list, setList] = useState<IListItem[]>(listData);
+
   const onColumnsChange = (e) => {
     setColumns(e.detail.value);
   };
   
-  const onChange = (list) => {
-    console.log('onChange', list);
+  const onChange = (sortedList) => {
+    console.log('onChange', sortedList);
     // state.listData = list; // 直接赋值 会重新渲染
   };
 
+  const memoList = useMemo(() => [...list, plusItem], [list]);
+
   const renderItem = (item: IListItem) => {
+    if (item.key === 'plus') {
+      return (
+        <View className={styles.item}>
+          <View className={styles.plus}><Image src={item.path} /></View>
+        </View>
+      )
+    }
     return (
-      <View className={styles.item} style={{ backgroundColor: item.backgroundColor, width: `${100 / columns}vw` }}>
-        {item.fixed ? 'fixed' : item.key }
+      <View className={styles.item}>
+        <Image src={item.path} />
+        { item.fixed && <View className={styles.fixed}>fixed</View> }
       </View>
     )
   };
@@ -55,7 +71,7 @@ export default () => {
     <View className={styles.container}>
     <Drag
       vibrate
-      listData={listData}
+      listData={memoList}
       itemHeight={itemHeight}
       columns={columns}
       onChange={onChange}
