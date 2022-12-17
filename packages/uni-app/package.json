@@ -10,7 +10,9 @@
   "author": "yijinc <yijinc@qq.com>",
   "homepage": "https://github.com/yijinc/fishui",
   "license": "ISC",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "main": "./lib/index.umd.js",
   "module": "./lib/index.js",
   "type": "module",
@@ -43,6 +45,8 @@
     "ios >= 8"
   ],
   "devDependencies": {
+    "@dcloudio/types": "^3.2.3",
+    "@dcloudio/uni-app": "3.0.0-3061420221215001",
     "vue": "3.2.45"
   },
   "publishConfig": {
