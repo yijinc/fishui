@@ -25,11 +25,13 @@ npm add @fishui/uni-app
 
 ## 使用
 
+> 注意 ⚠️ ：uni-app lib 是没有构建过的包，直接引入 .vue 源文件使用，需要使用方 支持 vue sfc & typescript
+
 ```js
 // 引入样式（全局）
 import '@fishui/uni-app/lib/style/style.css';
 // 必须指定 .vue 原文件
-import Navbar from '@fishui/uni-app/lib/Tab/index.vue';
+import Tab from '@fishui/uni-app/lib/Tab/index.vue';
 ```
 
 
@@ -39,15 +41,7 @@ import Navbar from '@fishui/uni-app/lib/Tab/index.vue';
 // pages.json
 {
 	"easycom": {
-		// 下载安装的方式需要前面的"@/"，npm安装的方式无需"@/"
-		// 下载安装方式
-		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
-		// npm安装方式
-		// "^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+		"^fish-(.*)": "@fishui/uni-app/lib/$1/index.vue"
 	},
-	// 此为本身已有的内容
-	"pages": [
-		// ......
-	]
 }
 ```

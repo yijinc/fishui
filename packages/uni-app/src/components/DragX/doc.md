@@ -32,7 +32,8 @@ demo
 </template>
 <script lang="ts" setup>
 import { reactive } from 'vue';
-import { DragX } from '@fishui/taro-vue';
+import DragX from '@fishui/uni-app/lib/DragX/index.vue';
+import '@fishui/uni-app/lib/DragX/style.scss';
 
 const listData = [
 	{ key: '0', backgroundColor: 'red', fixed: false },

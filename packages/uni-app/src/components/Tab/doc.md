@@ -9,7 +9,8 @@
 </template>
 <script lang="ts" setup>
 import { reactive } from 'vue';
-import { Tab } from '@fishui/uni-app';
+import Tab from '@fishui/uni-app/lib/Tab/index.vue';
+import '@fishui/uni-app/lib/Tab/style.scss';
 
 const state = reactive({
   tabList: [{ title: '关注' }, { title: '推荐' }, { title: '热榜' }],

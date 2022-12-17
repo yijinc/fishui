@@ -35,7 +35,8 @@ demo
 </template>
 <script lang="ts" setup>
 import { reactive } from 'vue';
-import { Drag } from '@fishui/uni-app';
+import Drag from '@fishui/uni-app/lib/Drag/index.vue';
+import '@fishui/uni-app/lib/Drag/style.scss';
 
 const listData = [
 	{ key: '0', backgroundColor: 'red', fixed: false },

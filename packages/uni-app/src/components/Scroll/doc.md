@@ -13,7 +13,8 @@
 </template>
 <script lang="ts" setup>
 import { reactive } from 'vue';
-import { Scroll } from '@fishui/uni-app';
+import Scroll from '@fishui/uni-app/lib/Scroll/index.vue';
+import '@fishui/uni-app/lib/Scroll/style.scss';
 
 // api doc https://www.wanandroid.com/blog/show/2
 const fetchData = async (page = 1) => {

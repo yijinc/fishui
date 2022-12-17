@@ -14,7 +14,8 @@
 </template>
 <script lang="ts" setup>
 import { reactive } from 'vue';
-import { Navbar } from '@fishui/uni-app';
+import Navbar from '@fishui/uni-app/lib/Navbar/index.vue';
+import '@fishui/uni-app/lib/Navbar/style.scss';
 
 const state = reactive({
   title: "标题",
