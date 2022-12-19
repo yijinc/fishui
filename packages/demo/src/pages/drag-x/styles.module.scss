@@ -1,20 +1,30 @@
 .container {
-  padding-top: 100px;
 	box-sizing: border-box;
-	:global(.fish-drag) {
-    background-color: #eee;
-    color: #fff;
-  }
+
+	.notice {
+		font-size: 24px;
+		color: rgb(179, 16, 16);
+		padding: 20px 20px  40px;
+	}
+
 	.dragBtn {
 		position: absolute;
 		top: 20px;
 		right: 20px;
-		width: 64px;
-		height: 64px;
-		background: url(https://img.souche.com/bolt/cEdXvTmxcFffo_FwB3k80/sort.png) no-repeat;
-		background-size: contain;
+		width: 84px;
+		height: 84px;
+		border: 1PX solid #ddd;
+		border-radius: 8px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		image {
+			width: 64px;
+			height: 64px;
+		}
 	}
   .item {
+		color:  #fff;
 		font-size: 64px;
 		display: flex;
 		width: 100%;

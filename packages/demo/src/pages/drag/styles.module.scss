@@ -30,12 +30,11 @@
 
 		.fixed {
 			position: absolute;
-			opacity: 0.7;
-			background-color: #000;
+			background-color: rgba(0, 0, 0, 0.4);
 			font-size: 32px;
-			bottom: 20px;
-			right: 20px;
-			left: 20px;
+			bottom: 10px;
+			right: 10px;
+			left: 10px;
 			text-align: center;
 			padding: 4px;
 		}

@@ -1,10 +1,9 @@
-import Taro from '@tarojs/taro';
-import { View } from '@tarojs/components';
+import { View, Image } from '@tarojs/components';
 import { DragX }  from '@fishui/taro-react';
 import styles from './styles.module.scss'
 
 definePageConfig({
-  navigationBarTitleText: 'drag-x',
+  navigationBarTitleText: 'DragX',
 	disableScroll: true,
 	enableShareAppMessage: true,
 	enableShareTimeline: true,
@@ -30,8 +29,7 @@ const listData: IListItem[] = [
 ];
 
 export default () => {
-  const itemHeight = Taro.getSystemInfoSync().windowWidth / 1.5;
-  
+
   const onChange = (list) => {
     console.log('onChange', list);
     // state.listData = list; // 直接赋值 会重新渲染
@@ -47,14 +45,21 @@ export default () => {
 
   return (
     <View className={styles.container}>
+      <View className={styles.notice}>
+        因为 Taro 无法使用原生 catch:touchmove 事件，无法让移动距离同原生scroll结合。
+        整块item拖动将无法触发scroll，动态设置catch-move属性不会在dom中实时生效，所以给出这个临时方案
+      </View>
       <DragX
-        vibrate
         listData={listData}
-        itemHeight={itemHeight}
-        trigger='longpress'
+        itemHeight={128}
         onChange={onChange}
         renderItem={renderItem}
-        renderDragItem={() => <View className={styles.dragBtn} /> as React.ReactNode}
+        style={{ height: '500PX', backgroundColor: '#eee' }}
+        renderDragItem={() => (
+          <View className={styles.dragBtn}>
+            <Image src='https://img.souche.com/bolt/cEdXvTmxcFffo_FwB3k80/sort.png' />
+          </View>
+        )}
       />
     </View>
   )

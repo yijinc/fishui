@@ -41,17 +41,17 @@ interface IInnerData {
   top: number;
   bottom: number;
   scrollTop: number;
-  ready: boolean;
 }
 
 type IDragXProps = React.PropsWithChildren<{
   listData: IPropsListItem[];
   id?: string;
+  className?: string;
+  style?: React.CSSProperties;
   columns?: number; // 列数
   itemHeight?: number; // 每个 item 高度
   vibrate?: boolean; // 开始拖拽时震动一下？
   transition?: boolean; //
-  trigger?: 'longpress' | 'touchstart'; // 触发拖拽的事件
   renderItem?: (item: IPropsListItem) => React.ReactNode;
   renderDragItem?: (item: IPropsListItem) => React.ReactNode;
   onChange?: (list: IPropsListItem[]) => void;
@@ -81,7 +81,6 @@ const DragX: React.FC<IDragXProps> = (props) => {
     top: 0,
     bottom: 0,
     scrollTop: -1,  // -1 un-init
-    ready: false,
   });
 
   const wrapHeight = Math.ceil(props.listData.length / props.columns!) * props.itemHeight!;
@@ -140,6 +139,7 @@ const DragX: React.FC<IDragXProps> = (props) => {
   };
 
   const onDragStart = (event: ITouchEvent, originIndex) => {
+    if (_baseData.scrollTop === -1) return; // 还未获取到 scrollTop
     const iTouch = event.touches[0];
     if (!iTouch) return;
     const realIndex = state.listData[originIndex].sortIndex;
@@ -166,16 +166,11 @@ const DragX: React.FC<IDragXProps> = (props) => {
     props.onDragStart?.(event);
   };
   
-  const onLongPress = (event: ITouchEvent, index: number) => {
-    if (props.trigger === 'longpress') {
-      onDragStart(event, index);
-    }  
-  };
-  
   const onTouchStart = (event: TouchEvent, index: number) => {
-    if (props.trigger === 'touchstart') {
+    execSelectQuery(createSelectorQuery().select(`#${props.id}`).scrollOffset()).then((res: NodesRef.ScrollOffsetCallbackResult) => {
+      _baseData.scrollTop = res.scrollTop;
       onDragStart(event as any as ITouchEvent, index);
-    }
+    });
   };
   
   const onTouchMove = (event: TouchEvent) => {
@@ -191,22 +186,22 @@ const DragX: React.FC<IDragXProps> = (props) => {
     // 到顶到底自动滑动
   const offsetTop = _baseData.distanceY + _baseData.scrollTop;
   const toBottom = iTouch.clientY - offsetTop + _baseData.itemHeight - _baseData.bottom;
+  const nextState = { ...state };
   if (toBottom > 0) {
-    state.scrollTop = _baseData.scrollTop + toBottom;
+    nextState.scrollTop = _baseData.scrollTop + toBottom;
   } else {
     const toTop = iTouch.clientY - offsetTop - _baseData.top;
     if (toTop < 0) {
-      state.scrollTop = _baseData.scrollTop + toTop;
+      nextState.scrollTop = _baseData.scrollTop + toTop;
     }
   }
   
     const tranX = props.columns === 1 ? 0 : iTouch.pageX - _baseData.left - _baseData.distanceX;
     const tranY = iTouch.pageY - _baseData.top - _baseData.distanceY;
-    setState({
-      ...state,
-      translateX: tranX,
-      translateY: tranY,
-    })
+
+    nextState.translateX = tranX;
+    nextState.translateY = tranY;
+    setState(nextState)
     
     const currentItem = state.listData[state.current];
     const sourceIndex = currentItem.sortIndex;
@@ -226,7 +221,8 @@ const DragX: React.FC<IDragXProps> = (props) => {
   const reset = () => {
     _baseData.previousMove = '';
     _baseData.isDragging = false;
-    setState({ ...state, current: -1 })
+    _baseData.scrollTop = -1;
+    setState({ ...state, current: -1 });
   };
   
   const onTouchEnd = (event: TouchEvent) => {
@@ -281,11 +277,12 @@ const DragX: React.FC<IDragXProps> = (props) => {
   return (
     <ScrollView
       id={props.id}
-      className='fish-drag-scroll'
+      className={classnames(props.className, 'fish-drag-scroll')}
+      style={props.style}
       scrollY
       scrollTop={state.scrollTop}
     >
-      <View id={props.id} className='fish-drag' style={{ height: `${wrapHeight}px` }}>
+      <View className='fish-drag' style={{ height: `${wrapHeight}px` }}>
         {
           state.listData.map((item, index) => (
             <View
@@ -305,7 +302,6 @@ const DragX: React.FC<IDragXProps> = (props) => {
               {props.renderItem?.(item.data)}
               <View
                 catchMove
-                onLongPress={(e) => onLongPress(e, index)}
                 onTouchStart={(e) => onTouchStart(e, index)}
                 onTouchMove={onTouchMove}
                 onTouchEnd={onTouchEnd}
@@ -324,10 +320,9 @@ DragX.defaultProps = {
   listData: [], 
   id: 'fish-drag-scroll',
   columns: 1,
-  itemHeight: 124,
+  itemHeight: 64,
   vibrate: false,
   transition: false,
-  trigger: 'longpress',
 };
 
 export default DragX;

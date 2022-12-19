@@ -20,8 +20,8 @@ interface IListItem {
 
 const listData: IListItem[] = [
 	{ key: '0', path: 'https://img.souche.com/bolt/D8VdjusNDi15fbtX-Gqp0/lufei2.jpg', backgroundColor: 'red', fixed: false },
-	{ key: '1', path: 'https://img.souche.com/bolt/CamGvSVaPMeC3h2Qlv4Uv/lufei9.jpg', backgroundColor: 'deeppink', fixed: true },
-	{ key: '2', path: 'https://img.souche.com/bolt/d7E95SUz7pCzy3fs5QQOg/lufei5.jpg',  backgroundColor: 'green', fixed: false },
+	{ key: '1', path: 'https://img.souche.com/bolt/CamGvSVaPMeC3h2Qlv4Uv/lufei9.jpg', backgroundColor: 'deeppink', fixed: false },
+	{ key: '2', path: 'https://img.souche.com/bolt/d7E95SUz7pCzy3fs5QQOg/lufei5.jpg',  backgroundColor: 'green', fixed: true },
 	{ key: '3', path: 'https://img.souche.com/bolt/SE_sgFvCgn6Z0wSUaFTMk/lufei4.jpg', backgroundColor: 'orange', fixed: false },
 	{ key: '4', path: 'https://img.souche.com/bolt/M4v9qNmwr4twhUhDtvVIJ/lufei3.jpg', backgroundColor: 'purple', fixed: false },
 	{ key: '5', path: 'https://img.souche.com/bolt/dB-2a2V7fz6eXdzjlWT1V/lufei7.jpg', backgroundColor: 'lime', fixed: false },
@@ -80,7 +80,7 @@ export default () => {
     }
     return (
       <View className={styles.item}>
-        <Image src={item.path} />
+        <Image src={item.path} mode='aspectFill' />
         { item.fixed && <View className={styles.fixed}>fixed</View> }
       </View>
     )
