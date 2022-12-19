@@ -11,9 +11,10 @@ definePageConfig({
 const list = [
   { title: 'Navbar', path: '/pages/navbar/index' },
   { title: 'Tab', path: '/pages/tab/index' },
-  { title: 'Scroll', path: '/pages/scroll/index' },
+  { title: 'Scroll List', path: '/pages/scroll/index' },
   { title: 'Drag', path: '/pages/drag/index' },
   { title: 'DragX', path: '/pages/drag-x/index' },
+  { title: 'Virtual Swiper', path: '/pages/virtual-swiper/index' },
 ];
 
 const navigate = (url) => Taro.navigateTo({ url });

@@ -14,11 +14,17 @@
   }
 
   .title {
+    padding: 0 20px;
     font-size: 32px;
     margin-bottom: 12px;
+    text {
+      font-size: 24px;
+      color: #aaa;
+    }
   }
   .footer {
     display: flex;
+    padding: 0 20px;
     button {
       font-size: 28px;
     }

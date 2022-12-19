@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Button } from '@tarojs/components';
+import { View, Button, Text } from '@tarojs/components';
 import { Tab } from '@fishui/taro-react';
 import styles from './styles.module.scss';
 
@@ -41,7 +41,7 @@ const operate = (func: 'push'|'unshift'|'remove'|'insert') => {
     <View className={styles.container}>
     <Tab current={current1} onChange={val => setCurrent1(val)} tabList={tabList1} />
 
-    <View className={styles.title}>动态 tabList</View>
+    <View className={styles.title}>动态 tabList <Text>（更改tabList时 current 需要自行设定）</Text></View>
     <Tab
       id='my-tabs2'
       scrollable
