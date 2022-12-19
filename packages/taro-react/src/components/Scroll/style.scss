@@ -28,6 +28,8 @@ $success-bar-height: 32PX;
     height: $refresher-height; // refresher-success bar
     width: 100%;
     transition: height .5s ease;
+    display: flex;
+    justify-content: center;
     &-show {
       height: $success-bar-height !important; // transition height 80 => 32
     }
@@ -42,14 +44,13 @@ $success-bar-height: 32PX;
       display: flex;
       justify-content: center;
       align-items: center;
-      opacity: 0;
-      transform: scale(0);
       height: $success-bar-height;
-      width: 100%;
+      width: 0;
+      opacity: 0;
       &-show {
-        transform: scale(1);
+        width: 100%;
         opacity: 1;
-        transition: opacity .35s linear, transform .35s linear;
+        transition: opacity .35s linear, width .35s linear;
       } 
     }
   }

@@ -87,6 +87,8 @@ const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (p
     await Promise.all([props.refresh?.(), dummyRequest(100)]);
     if (state.flush) setState({ ...state, flush: false });
 
+    clearTimeout(_.timer);
+
     if (props.showSuccess) {
       setState({ ...state, refreshStatus: 3 });
       _.timer = setTimeout(() => {
@@ -184,7 +186,7 @@ const Scroll: React.ForwardRefRenderFunction<{refresh: any }, IScrollProps> = (p
           <View
             className={classnames({
               'fish-scroll__success': true,
-              'fish-scroll__success-show': state.refreshStatus >= 3,
+              'fish-scroll__success-show': state.refreshStatus >= 4,
               'fish-scroll__success-hide': state.refreshStatus === 5,
             })}
             style={{ height: props.refresherThreshold + 'px' }}

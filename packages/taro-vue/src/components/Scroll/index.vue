@@ -156,17 +156,18 @@ const onRefresherRefresh = async (e?: IRefreshEvent) => {
   }
   state.refreshStatus = 2;
   await Promise.all([props.refresh(), dummyRequest(100)]);
-  state.flush = false;
-  state.refreshStatus = 3;
+  if (state.flush) state.flush = false;
+  
   clearTimeout(_timer);
   if (props.showSuccess) {
+    state.refreshStatus = 3;
     _timer = setTimeout(() => {
       state.refreshStatus = 4;
       _timer = setTimeout(() => {
         state.refreshStatus = 5;
-        _timer = setTimeout(reset, 360); 
-      }, 1500);
-    }, 20);
+        _timer = setTimeout(reset, 500 + 20); 
+      }, 1600);
+    }, 0);
   } else {
     _timer = setTimeout(reset, 100);
   }
