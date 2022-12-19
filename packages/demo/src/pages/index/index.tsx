@@ -19,7 +19,7 @@ const list = [
 
 const navigate = (url) => Taro.navigateTo({ url });
 const logoURL = 'https://img.souche.com/bolt/4aEPNxR0gh8-B5Vz_UtU6/image.png';
-const title = 'fishui 是一套基于Taro的小程序组件';
+const title = 'fishui 是一套基于 taro 和 uni-app 的常用的小程序组件，致力于用最简洁、舒适可靠的实现，这里可能有你需要的而ui库没有给你提供的组件';
 
 export default () => {
   Taro.useShareAppMessage(() => ({
@@ -33,7 +33,7 @@ export default () => {
         <Image src={logoURL} />
       <View className={styles.info}>
         <View className={styles.title}>fishui</View>
-        <View>{title}，<Text selectable>https://github.com/yijinc/fishui</Text></View>
+        <View>{title}。地址：<Text selectable style={{ color: '#7468F2' }}>https://github.com/yijinc/fishui</Text></View>
       </View>
     </View>
     <View className={styles.item} style={{ borderTop: 0, fontWeight: 600 }}>组件列表</View>

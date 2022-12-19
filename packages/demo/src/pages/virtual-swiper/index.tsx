@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
 import { View, Input, Text } from '@tarojs/components';
-import { Navbar } from '@fishui/taro-react';
-import VirtualSwiper from '../../components/VirtualSwiper/index';
-import '../../components/VirtualSwiper/style.scss';
-import SwiperSlide from '../../components/SwiperSlide';
-import '../../components/SwiperSlide/style.scss';
+import { Navbar, VirtualSwiper, SwiperSlide } from '@fishui/taro-react';
 import styles from './styles.module.scss';
 
 definePageConfig({
@@ -56,12 +52,12 @@ export default () => {
 
   return (
     <View className={styles.container}>
-      <Navbar backgroundColor='transparent' />
+      <Navbar backgroundColor='transparent' title='VirtualSwiper' color='#fff' />
       <VirtualSwiper current={current} onChange={onChange} slidesPerView={2}>
         { sliders.map(renderItem) }
       </VirtualSwiper>
       <View className={styles.footer}>
-        <Input onConfirm={onConfirm} placeholder='跳转到' maxlength={4} />
+        <Input value={current} onConfirm={onConfirm} placeholder='跳转到' maxlength={4} />
         <Text> / { sliders.length - 1 }</Text>
       </View>
     </View>
