@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import Taro from '@tarojs/taro';
 import { View, Text, Button, Slider, Image } from '@tarojs/components';
 import { Drag }  from '@fishui/taro-react';
@@ -12,10 +12,10 @@ definePageConfig({
 });
 
 interface IListItem {
-  key: string;
+  key?: string;
   path: string;
-  backgroundColor: string;
-  fixed: boolean;
+  backgroundColor?: string;
+  fixed?: boolean;
 }
 
 const listData: IListItem[] = [
@@ -35,26 +35,45 @@ const plusItem = {
 }
 
 export default () => {
+  const maxCount = 9;
   const [columns, setColumns] = useState<number>(3);
+  const [transition, setTransition] = useState<boolean>(true);
   const itemHeight = Taro.getSystemInfoSync().windowWidth / columns;
   const [longpressTrigger, setLongpressTrigger] = useState<boolean>(true);
   const [list, setList] = useState<IListItem[]>(listData);
+  const sortedList = useRef(list)
 
   const onColumnsChange = (e) => {
     setColumns(e.detail.value);
   };
   
-  const onChange = (sortedList) => {
-    console.log('onChange', sortedList);
-    // state.listData = list; // 直接赋值 会重新渲染
+  const onChange = (sorted: IListItem[]) => {
+    console.log('onChange', sorted);
+    sortedList.current = sorted.filter(v => v.key !== 'plus');
+    // setList(sorted); // 直接赋值 会重新渲染
   };
 
-  const memoList = useMemo(() => [...list, plusItem], [list]);
+  const add = () => {
+    Taro.chooseMedia({
+      count: maxCount - list.length,
+      mediaType: ['image'],
+      sourceType: ['album'],
+      camera: 'back',
+      success: ({ tempFiles }) => {
+        // setTransition(false);
+        sortedList.current = [ ...sortedList.current, ...tempFiles.map(temp => ({ path: temp.tempFilePath }))];
+        setList(sortedList.current);
+        // setTimeout(() => setTransition(true), 500)
+      },
+    });
+  }
+
+  const memoList = useMemo(() => list.length >= maxCount ? list : [...list, plusItem], [list]);
 
   const renderItem = (item: IListItem) => {
     if (item.key === 'plus') {
       return (
-        <View className={styles.item}>
+        <View className={styles.item} onClick={add}>
           <View className={styles.plus}><Image src={item.path} /></View>
         </View>
       )
@@ -76,6 +95,7 @@ export default () => {
       columns={columns}
       onChange={onChange}
       renderItem={renderItem}
+      transition={transition}
       trigger={longpressTrigger? 'longpress' : 'touchstart'}
     />
 		<View className={styles.footer}>
