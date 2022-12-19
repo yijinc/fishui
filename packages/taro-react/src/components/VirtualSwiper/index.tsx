@@ -1,11 +1,13 @@
 import * as React from 'react';
 import classnames from 'classnames';
 import Taro from '@tarojs/taro';
-import { View, CommonEventFunction } from '@tarojs/components';
+import { View } from '@tarojs/components';
 import { execSelectQuery } from '../../utils';
 
 type ISwiperProps = React.PropsWithChildren<{
   id?: string;
+  className?: string;
+  style?: React.CSSProperties;
   current?: number;
   duration?: number;
   catchMove?: boolean; // 是否防止穿透，阻止默认事件
@@ -20,7 +22,6 @@ interface IState {
   translateY: number;
   width: number;
   height: number;
-  isMoving: boolean;
   from: number;
   to: number;
 }
@@ -38,10 +39,10 @@ const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
     translateY: 0,
     width: 0,
     height: 0,
-    isMoving: false,
     from: Math.max(props.current! - props.slidesPerView!, 0),
     to: props.current! + props.slidesPerView!,
   });
+  const [isMoving, setIsMoving] = React.useState<boolean>(false);
 
   const setState = (nextState: Partial<IState>) => _setState({ ...state, ...nextState });
 
@@ -51,20 +52,28 @@ const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
     startTouchTime: 0,
   });
 
-  const slides = [];
+  const slides = React.useMemo<React.ReactElement[]>(() => {
+    const _slides = [];
+    React.Children.toArray(props.children).forEach((child) => {
+      // @ts-ignore
+      if (child.type && child.type.displayName === 'SwiperSlide') {
+        // @ts-ignore
+        _slides.push(child);
+      }
+    });
+    return _slides;
+  }, [props.children]);
 
   const doNotAnimate = () => {
-    setState({ isMoving: true });
-    setTimeout(() => {
-      setState({ isMoving: false });
-    }, props.duration);
+    setIsMoving(true);
+    setTimeout(() => setIsMoving(false), props.duration);
   };
 
   const reset = () => {
     _.startX = 0;
     _.startY = 0;
     _.startTouchTime = 0;
-    setState({ isMoving: false });
+    setIsMoving(false)
   };
 
   const moveTo = (index: number) => {
@@ -72,22 +81,23 @@ const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
     let targetIndex = index;
     if (targetIndex < 0) targetIndex = 0;
     if (targetIndex >= maxLen) targetIndex = maxLen - 1;
+
+    const nextState: Partial<IState> = {}
   
     if (props.vertical) {
-      setState({ translateY: -targetIndex * state.height });
+      nextState.translateY = -targetIndex * state.height;
     } else {
-      setState({ translateX: -targetIndex * state.width });
+      nextState.translateX = -targetIndex * state.width;
     }
     if (state.currentIndex !== targetIndex) {
-      setState({
-        currentIndex: targetIndex,
-        from: Math.max(targetIndex - props.slidesPerView!, 0),
-        to: Math.min(targetIndex + props.slidesPerView!, maxLen - 1)
-      });
+      nextState.currentIndex = targetIndex;
+      nextState.from = Math.max(targetIndex - props.slidesPerView!, 0);
+      nextState.to = Math.min(targetIndex + props.slidesPerView!, maxLen - 1)
       if (targetIndex !== props.current) {
         props.onChange?.(targetIndex);
       }
     }
+    setState(nextState);
   };
   
   const onTouchStart = (event: TouchEvent) => {
@@ -97,12 +107,12 @@ const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
     _.startX = iTouch.pageX;
     _.startY = iTouch.pageY;
     _.startTouchTime = Date.now();
-    setState({ isMoving: true });
+    setIsMoving(true);
   };
   
   const onTouchMove = (event: TouchEvent) => {
     const iTouch = event.touches[0];
-    if (!iTouch || !state.isMoving) return;
+    if (!iTouch || !isMoving) return;
     const offsetX = iTouch.pageX - _.startX;
     const offsetY = iTouch.pageY - _.startY;
   
@@ -120,7 +130,7 @@ const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
   };
   
   const onTouchEnd = (event: TouchEvent) => {
-    if (!state.isMoving) return;
+    if (!isMoving) return;
     const iTouch = event.changedTouches[0];
     if (!iTouch) return;
     if (props.vertical) {
@@ -138,57 +148,45 @@ const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
 
     reset();
   };
+
+  React.useEffect(() => {
+    if (props.current === state.currentIndex) return;
+    if (Math.abs(props.current! - state.currentIndex) > props.slidesPerView!) {
+      doNotAnimate();
+    }
+    moveTo(props.current!);
+  }, [props.current])
   
   Taro.useReady(() => {
-    execSelectQuery(Taro.createSelectorQuery().select(`#${props.id}`).boundingClientRect())
-    .then((res: Taro.NodesRef.BoundingClientRectCallbackResult) => {
+    execSelectQuery(Taro.createSelectorQuery().select(`#${props.id}`).boundingClientRect()).then(({ width, height }: any) => {
       doNotAnimate();
       const nextState: Partial<IState> = {
-        width: res.width,
-        height: res.height,
+        width,
+        height,
       };
       if (props.vertical) {
-        nextState.translateY = -props.current! * state.height;
+        nextState.translateY = -props.current! * height;
       } else {
-        nextState.translateX = -props.current! * state.width;
+        nextState.translateX = -props.current! * width;
       }
       setState(nextState);
     });
   });
-  
-  
-  // const renderSlides = (): VNode => {
-  //   const itemStyle: CSSProperties = {};
-  //   if (props.vertical) {
-  //     itemStyle.top = `${state.from * state.height}px`;
-  //     if (state.height !== 0) itemStyle.height = `${state.height}px`;
-  //   } else {
-  //     itemStyle.left = `${state.from * state.width}px`;
-  //     if (state.width !== 0) itemStyle.width = `${state.width}px`;
-  //   }
-  
-  //   return h(Fragment, {}, slides.value
-  //     .filter((_item, index) => index >= state.from && index <= state.to)
-  //     .map((slide: VNode, index) => {
-  //     if (!slide.props) slide.props = { key: String(index) };
-  //     if (!slide.props.style) slide.props.style = {};
-  //     slide.props.style = { ...slide.props.style, ...itemStyle, ...{ top: `${state.from * state.height}px` }};
-  //     return h(slide.type as any, {...slide.props}, slide.children as VNode[]);
-  //   }));
-  // };
-  
-  // watch(() => props.current, (newCurrent, preCurrent) => {
-  //   if (newCurrent === state.currentIndex) return;
-  //   if (Math.abs(newCurrent - preCurrent) > props.slidesPerView) {
-  //     doNotAnimate();
-  //   }
-  //   moveTo(newCurrent);
-  // });
+
+  const slideStyle: React.CSSProperties = {};
+  if (props.vertical) {
+    slideStyle.top = `${state.from * state.height}px`;
+    if (state.height !== 0) slideStyle.height = `${state.height}px`;
+  } else {
+    slideStyle.left = `${state.from * state.width}px`;
+    if (state.width !== 0) slideStyle.width = `${state.width}px`;
+  }
 
   return (
     <View
       id={props.id}
-      className='fish-swiper'
+      className={classnames(props.className, 'fish-swiper')}
+      style={props.style}
       catchMove={props.catchMove}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
@@ -201,12 +199,17 @@ const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
         'fish-swiper__vertical': props.vertical,
       })}
         style={{
-        transitionDuration: `${state.isMoving ? 0 : props.duration}ms`,
+        transitionDuration: `${isMoving ? 0 : props.duration}ms`,
         transform: `translateX(${state.translateX}px) translateY(${state.translateY}px)`,
         [props.vertical ? 'height' : 'width']: props.vertical ? `${state.height * slides.length}px` : `${state.width * slides.length}px`,
       }}
       >
-        {props.children}
+        {slides.filter((_c, index) => index >= state.from && index <= state.to).map((slide, index) => {
+          const childProps = { ...slide.props };
+          if (!childProps.key) childProps.key = String(index);
+          childProps.style = { ...childProps.style, ...slideStyle };
+          return React.cloneElement(slide, childProps)
+        })}
     </View>
     </View>
   );
