@@ -3,7 +3,7 @@ import { View, Image, Text } from '@tarojs/components';
 import styles from './styles.module.scss';
 
 definePageConfig({
-  navigationBarTitleText: 'fishui',
+  navigationBarTitleText: 'Fish UI',
   enableShareAppMessage: true,
   enableShareTimeline: true,
 });
@@ -19,7 +19,7 @@ const list = [
 
 const navigate = (url) => Taro.navigateTo({ url });
 const logoURL = 'https://img.souche.com/bolt/4aEPNxR0gh8-B5Vz_UtU6/image.png';
-const title = 'fishui 是一套基于 taro 和 uni-app 的常用的小程序组件，致力于用最简洁、舒适可靠的实现，这里可能有你需要的而ui库没有给你提供的组件';
+const title = 'Fish UI 是一套基于 taro 和 uni-app 的常用的小程序组件，致力于用最简洁、舒适可靠的实现';
 
 export default () => {
   Taro.useShareAppMessage(() => ({

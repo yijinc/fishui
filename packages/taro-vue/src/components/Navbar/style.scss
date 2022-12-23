@@ -7,10 +7,13 @@
     z-index: 998;
     left: 0;
     right: 0;
+
+    .fish-navbar__header {
+      position: fixed;
+    }
   }
   &__header {
     width: 100%;
-    position: fixed;
     display: flex;
     flex-direction: row;
     align-items: center;

@@ -17,12 +17,12 @@ export default () => {
   
   return (
     <View className={styles.container}>
-      <Navbar hideBack title='Navbar' backgroundColor='#cb1ee0' color='#fff' />
+      <Navbar hideBack title='Navbar' backgroundColor='#000000' color='#fff' />
 
-      <View className={styles.title}>一般用法 fixed = true</View>
+      <View className={styles.title}>一般用法（导航固定）</View>
       <Navbar title='标题' />
 
-      <View className={styles.title}>自定义导航栏返回内容 fixed = false </View>
+      <View className={styles.title}>自定义导航栏返回内容 （导航不固定） </View>
       <Navbar
         fixed={false}
         renderLeft={() => <View
@@ -39,7 +39,7 @@ export default () => {
         title='标题'
       />
 
-      <View className={styles.title}>自定义导航栏中间内容 fixed = false</View>
+      <View className={styles.title}>自定义导航栏中间内容 （导航不固定）</View>
       <Navbar
         fixed={false}
         renderTitle={() => <Tab current={current} tabList={tabList} onChange={setCurrent} />}
