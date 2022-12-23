@@ -1,0 +1,19 @@
+.container {
+  background-color: #eee;
+  .title {
+    padding-left: 40px;
+    padding-bottom: 20px;
+    font-size: 28px;
+    color: #666666;
+    margin-top: 160px;
+  }
+  .back {
+    width: 44PX;
+    height: 44PX;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: bisque;
+    font-size: 32px;
+  } 
+}

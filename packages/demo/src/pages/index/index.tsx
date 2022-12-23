@@ -32,11 +32,10 @@ export default () => {
       <View className={styles.flex}>
         <Image src={logoURL} />
       <View className={styles.info}>
-        <View className={styles.title}>fishui</View>
-        <View>{title}。地址：<Text selectable style={{ color: '#7468F2' }}>https://github.com/yijinc/fishui</Text></View>
+        {title}。地址：<Text selectable style={{ color: '#7468F2' }}>https://github.com/yijinc/fishui</Text>
       </View>
     </View>
-    <View className={styles.item} style={{ borderTop: 0, fontWeight: 600 }}>组件列表</View>
+    <View className={styles.itemTitle}>组件列表</View>
     {
       list.map((item => (
         <View className={styles.item} key={item.title} onTap={() => navigate(item.path)}>{ item.title }</View>
