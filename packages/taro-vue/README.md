@@ -7,6 +7,10 @@
 fishui 是一套基于 [taro](https://github.com/NervJS/taro) 和 [uni-app](https://github.com/dcloudio/uni-app) 的常用的小程序组件，致力于用最简洁、舒适可靠的实现，这里可能有你需要的而ui库没有给你提供的组件
 
 
+## 线上演示
+
+![FishUI](https://img.souche.com/bolt/6JA5Bw2QbOvZxGymKuHbz/gh_1407e2b12b0f_258.jpg)
+
 ## 组件列表
 
 - [Navbar：导航栏](https://github.com/yijinc/fishui/tree/master/packages/taro-vue/src/components/Navbar/doc.md)
@@ -27,7 +31,7 @@ npm add @fishui/taro-vue
 
 ```js
 // 引入样式（全局）
-import '@fishui/taro-vue/lib/style/style.css';
+import '@fishui/taro-vue/lib/style.css';
 import { Tab, Navbar } from '@fishui/taro-vue';
 ```
 
@@ -37,8 +41,8 @@ import { Tab, Navbar } from '@fishui/taro-vue';
 手动指定引入
 
 ```js
-import Tab from '@fishui/taro-vue/lib/es/Tab';
-import '@fishui/taro-vue/lib/style/Tab/style.css';
+import Tab from '@fishui/taro-vue/lib/components/Tab';
+import '@fishui/taro-vue/lib/components/Tab/style.scss';
 ```
 
 可通过 [babel-plugin-import](https://github.com/umijs/babel-plugin-import) 设置自动转换为按需引入的方式
@@ -54,7 +58,7 @@ import '@fishui/taro-vue/lib/style/Tab/style.css';
       {
         "libraryName": "@fishui/taro-vue",
         "libraryDirectory": "lib/es",
-        "style": (name, file) => name.replace('es', 'style') + '/style.css',
+        "style": (name, file) => name + '/style.scss',
         "camel2DashComponentName": false
       }
     ]

@@ -7,14 +7,18 @@
 fishui 是一套基于 [taro](https://github.com/NervJS/taro) 和 [uni-app](https://github.com/dcloudio/uni-app) 的常用的小程序组件，致力于用最简洁、舒适可靠的实现，这里可能有你需要的而ui库没有给你提供的组件
 
 
+## 线上演示
+
+![FishUI](https://img.souche.com/bolt/6JA5Bw2QbOvZxGymKuHbz/gh_1407e2b12b0f_258.jpg)
+
 ## 组件列表
 
-- [Navbar：导航栏](https://github.com/yijinc/fishui/tree/master/packages/taro-vue/src/components/Navbar/doc.md)
-- [Tab：选项切换](https://github.com/yijinc/fishui/tree/master/packages/taro-vue/src/components/Tab/doc.md)
-- [Scroll：列表滚动 下拉刷新、加载更多](https://github.com/yijinc/fishui/tree/master/packages/taro-vue/src/components/Scroll/doc.md)
-- [Drag：拖拽排序 - 单屏](https://github.com/yijinc/fishui/tree/master/packages/taro-vue/src/components/Drag/doc.md)
-- [DragX：拖拽排序 - 列表](https://github.com/yijinc/fishui/tree/master/packages/taro-vue/src/components/DragX/doc.md)
-- [VirtualSwiper：虚拟滑动](https://github.com/yijinc/fishui/tree/master/packages/taro-vue/src/components/VirtualSwiper/doc.md)
+- [Navbar：导航栏](https://github.com/yijinc/fishui/tree/master/packages/taro-react/src/components/Navbar/doc.md)
+- [Tab：选项切换](https://github.com/yijinc/fishui/tree/master/packages/taro-react/src/components/Tab/doc.md)
+- [Scroll：列表滚动 下拉刷新、加载更多](https://github.com/yijinc/fishui/tree/master/packages/taro-react/src/components/Scroll/doc.md)
+- [Drag：拖拽排序 - 单屏](https://github.com/yijinc/fishui/tree/master/packages/taro-react/src/components/Drag/doc.md)
+- [DragX：拖拽排序 - 列表](https://github.com/yijinc/fishui/tree/master/packages/taro-react/src/components/DragX/doc.md)
+- [VirtualSwiper：虚拟滑动](https://github.com/yijinc/fishui/tree/master/packages/taro-react/src/components/VirtualSwiper/doc.md)
 
 
 ## 安装
@@ -27,7 +31,7 @@ npm add @fishui/taro-react
 
 ```js
 // 引入样式（全局）
-import '@fishui/taro-react/lib/style/style.css';
+import '@fishui/taro-react/lib/style.css';
 import { Tab, Navbar } from '@fishui/taro-react';
 ```
 
@@ -37,8 +41,8 @@ import { Tab, Navbar } from '@fishui/taro-react';
 手动指定引入
 
 ```js
-import Tab from '@fishui/taro-react/lib/es/Tab';
-import '@fishui/taro-react/lib/style/Tab/style.css';
+import Tab from '@fishui/taro-react/lib/components/Tab';
+import '@fishui/taro-react/lib/components/Tab/style.scss';
 ```
 
 可通过 [babel-plugin-import](https://github.com/umijs/babel-plugin-import) 设置自动转换为按需引入的方式
@@ -54,7 +58,7 @@ import '@fishui/taro-react/lib/style/Tab/style.css';
       {
         "libraryName": "@fishui/taro-react",
         "libraryDirectory": "lib/es",
-        "style": (name, file) => name.replace('es', 'style') + '/style.css',
+        "style": (name, file) => name + '/style.scss',
         "camel2DashComponentName": false
       }
     ]
