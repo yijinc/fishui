@@ -8,6 +8,7 @@ definePageConfig({
   enableShareAppMessage: true,
   enableShareTimeline: true,
   navigationStyle: 'custom',
+  disableScroll: true,
 });
 
 interface IItem {

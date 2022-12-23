@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import Taro from '@tarojs/taro';
 import { View } from '@tarojs/components';
-import { Navbar } from '@fishui/taro-react';
-import { Tab } from '../../index'
+import { Navbar, Tab } from '@fishui/taro-react';
 import styles from './style.module.scss';
 
 definePageConfig({
@@ -20,11 +19,12 @@ export default () => {
     <View className={styles.container}>
       <Navbar hideBack title='Navbar' backgroundColor='#cb1ee0' color='#fff' />
 
-      <View className={styles.title}>一般用法</View>
+      <View className={styles.title}>一般用法 fixed = true</View>
       <Navbar title='标题' />
 
-      <View className={styles.title}>自定义导航栏返回内容</View>
+      <View className={styles.title}>自定义导航栏返回内容 fixed = false </View>
       <Navbar
+        fixed={false}
         renderLeft={() => <View
           className={styles.back}
           onClick={() => Taro.showModal({
@@ -39,8 +39,9 @@ export default () => {
         title='标题'
       />
 
-      <View className={styles.title}>自定义导航栏中间内容</View>
+      <View className={styles.title}>自定义导航栏中间内容 fixed = false</View>
       <Navbar
+        fixed={false}
         renderTitle={() => <Tab current={current} tabList={tabList} onChange={setCurrent} />}
       />
 

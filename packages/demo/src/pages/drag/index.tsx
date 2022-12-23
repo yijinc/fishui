@@ -5,7 +5,7 @@ import { Drag }  from '@fishui/taro-react';
 import styles from './styles.module.scss'
 
 definePageConfig({
-  navigationBarTitleText: 'drag',
+  navigationBarTitleText: 'Drag',
 	disableScroll: true,
 	enableShareAppMessage: true,
 	enableShareTimeline: true,
