@@ -66,11 +66,14 @@ const Navbar: React.FC<INavbarProps> = (props) => {
           )
         }
       </View>
-
-      <View className='fish-navbar__placeholder'>
-        <View style={statusBarStyle} />
-        <View style={{ height }} />
-      </View>
+      {
+        props.fixed && (
+          <View className='fish-navbar__placeholder'>
+            <View style={statusBarStyle} />
+            <View style={{ height }} />
+          </View>
+        )
+      }
     </View>
   )
 };
