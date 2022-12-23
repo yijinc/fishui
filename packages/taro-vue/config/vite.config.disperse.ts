@@ -20,6 +20,10 @@ inputCollect(path.resolve(__dirname, '../src/components'));
 
 const afterBuild = () => {
   fs.copyFileSync('src/index.ts', 'lib/index.d.ts');
+  // copy scss files
+  Object.keys(input).forEach(key => {
+    fs.copyFileSync(path.resolve(`src/components/${key}/style.scss`), path.resolve(`lib/components/${key}/style.scss`))
+  })
 }
 
 // https://vitejs.dev/config/
@@ -49,9 +53,10 @@ export default defineConfig({
           'vue': 'Vue',
           '@tarojs/taro': 'Taro',
         },
-        dir: path.resolve(__dirname, '../lib/es'),
+        dir: path.resolve('lib/components'),
         entryFileNames: '[name]/index.js',
       }
-    }
+    },
+    emptyOutDir: false,
   }
 })
