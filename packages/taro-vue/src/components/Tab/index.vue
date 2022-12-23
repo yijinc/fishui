@@ -67,9 +67,17 @@ const props = withDefaults(defineProps<IProps>(), {
 // eslint-disable-next-line no-unused-vars
 const emit = defineEmits<(e: 'update:modelValue', index: number) => void>();
 
-let _scrollWidth = 375; // scroll-view width
-let _tabItems: { width: number; left: number;}[] = [];
-let _rerenderList = false;
+const _: {
+  containerWidth: number;
+  containerLeft: number;
+  tabItems: { width: number; left: number;}[];
+  rerenderList: boolean;
+} = {
+  containerWidth: 375,
+  containerLeft: 0,
+  tabItems: [],
+  rerenderList: false,
+};
 
 const state = reactive<IState>({
   lineWidth: 0,
@@ -89,17 +97,17 @@ const handleClick = async (index: number) => {
 };
 
 const getLayout = () => {
-  const item = _tabItems[props.modelValue];
+  const item = _.tabItems[props.modelValue];
   if (!item) return;
   state.lineWidth = item.width;
-  state.lineTranX = item.left;
+  state.lineTranX = item.left - _.containerLeft;
   if (props.scrollable) {
     // 保持滚动后当前 item '尽可能' 在屏幕中间
-    if (_rerenderList) {
+    if (_.rerenderList) {
       state.scrollLeft = state.scrollLeft + 0.001; // invoke rerender
-      _rerenderList = false;
+      _.rerenderList = false;
     } else {
-      state.scrollLeft = Math.max(item.left - (_scrollWidth - item.width) / 2, 0);
+      state.scrollLeft = Math.max(item.left - _.containerLeft - (_.containerWidth - item.width) / 2, 0);
     }
   }
 };
@@ -109,19 +117,22 @@ const init = () => {
   Promise.all([
     execSelectQuery(createSelectorQuery().select(`#${props.id}`).boundingClientRect()),
     execSelectQuery(createSelectorQuery().selectAll(`#${props.id} .fish-tabs__item-text`).boundingClientRect()),
-  ]).then(([container, items]) => {
-    _scrollWidth = (container as NodesRef.BoundingClientRectCallbackResult).width;
-    if (_rerenderList) {
-      const previousFirstItem = _tabItems[0];
+  ]).then(([_container, _items]) => {
+    const container = _container as NodesRef.BoundingClientRectCallbackResult;
+    const items = _items as NodesRef.BoundingClientRectCallbackResult[];
+    _.containerWidth = container.width;
+    _.containerLeft = container.left;
+    if (_.rerenderList) {
+      const previousFirstItem = _.tabItems[0];
       if (!previousFirstItem) {
-        _tabItems = items as NodesRef.BoundingClientRectCallbackResult[];
-        _rerenderList = false;
+        _.tabItems = items;
+        _.rerenderList = false;
       } else {
         const distanceLeft = items[0].left - previousFirstItem.left;
-        _tabItems = (items as NodesRef.BoundingClientRectCallbackResult[]).map(v => ({ ...v, left: v.left - distanceLeft }));
+        _.tabItems = items.map(v => ({ ...v, left: v.left - distanceLeft }));
       }
     } else {
-      _tabItems = (items as NodesRef.BoundingClientRectCallbackResult[]);
+      _.tabItems = items;
     }
     getLayout();
     if (state.firstInit) {
@@ -131,7 +142,7 @@ const init = () => {
 };
 
 const tabListChange = () => {
-  _rerenderList = true;
+  _.rerenderList = true;
   /**
    * 必须等到 list 渲染完毕后再去获取 dom 信息，
    * 一般 tabList 数据量越大，需要给予渲染时间越长

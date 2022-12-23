@@ -27,11 +27,13 @@ interface IState {
 
 const Tab: React.FC<ITabProps> = (props) => {
   const { current: _ } = React.useRef<{
-    scrollWidth: number;
+    containerWidth: number;
+    containerLeft: number;
     tabItems: { width: number; left: number;}[];
     rerenderList: boolean;
   }>({
-    scrollWidth: 375,
+    containerWidth: 375,
+    containerLeft: 0,
     tabItems: [],
     rerenderList: false,
   });
@@ -60,14 +62,14 @@ const Tab: React.FC<ITabProps> = (props) => {
 
     const nextState = { ...state };
     nextState.lineWidth = item.width;
-    nextState.lineTranX = item.left;
+    nextState.lineTranX = item.left - _.containerLeft;
     if (props.scrollable) {
       // 保持滚动后当前 item '尽可能' 在屏幕中间
       if (_.rerenderList) {
         nextState.scrollLeft += 0.001; // invoke rerender
         _.rerenderList = false;
       } else {
-        nextState.scrollLeft = Math.max(item.left - (_.scrollWidth - item.width) / 2, 0);
+        nextState.scrollLeft = Math.max(item.left - _.containerLeft - (_.containerWidth - item.width) / 2, 0);
       }
     }
     setState(nextState);
@@ -78,9 +80,11 @@ const Tab: React.FC<ITabProps> = (props) => {
     Promise.all([
       execSelectQuery(createSelectorQuery().select(`#${props.id}`).boundingClientRect()),
       execSelectQuery(createSelectorQuery().selectAll(`#${props.id} .fish-tabs__item-text`).boundingClientRect()),
-    ]).then(([container, _items]) => {
+    ]).then(([_container, _items]) => {
+      const container = _container as NodesRef.BoundingClientRectCallbackResult;
       const items = _items as NodesRef.BoundingClientRectCallbackResult[];
-      _.scrollWidth = (container as NodesRef.BoundingClientRectCallbackResult).width;
+      _.containerWidth = container.width;
+      _.containerLeft = container.left;
       if (_.rerenderList) {
         const previousFirstItem = _.tabItems[0];
         if (!previousFirstItem) {
