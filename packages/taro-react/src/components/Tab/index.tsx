@@ -141,7 +141,7 @@ const Tab: React.FC<ITabProps> = (props) => {
                   'fish-tabs__item': true,
                   'fish-tabs__item--active': props.current === index
                 })}
-                onTap={() => handleClick(index)}
+                onClick={() => handleClick(index)}
               >
                 <View className='fish-tabs__item-text'>{ item.title }</View>
               </View>
