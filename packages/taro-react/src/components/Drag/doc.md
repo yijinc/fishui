@@ -16,7 +16,7 @@ demo
 ```tsx
 import { useState, useMemo, useRef } from 'react';
 import Taro from '@tarojs/taro';
-import { View, Text, Button, Slider, Image } from '@tarojs/components';
+import { View } from '@tarojs/components';
 import { Drag }  from '@fishui/taro-react';
 
 const listData = [
@@ -33,15 +33,15 @@ const listData = [
 ];
 
 export default () => {
-  const maxCount = 9;
   const [columns, setColumns] = useState<number>(3);
   const [transition, setTransition] = useState<boolean>(true);
   const itemHeight = Taro.getSystemInfoSync().windowWidth / columns;
   const [longpressTrigger, setLongpressTrigger] = useState<boolean>(true);
   const [list, setList] = useState<IListItem[]>(listData);
   const sortedList = useRef(list);
-
   const onChange = (sorted) => sortedList.current = sorted;
+
+  const renderItem = (item, index) => (<View key={index}>{ item.fixed? ' fixed' : index }</View>);
 
   return (
     <Drag

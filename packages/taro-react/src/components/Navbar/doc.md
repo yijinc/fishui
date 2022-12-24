@@ -1,31 +1,18 @@
-# Drag 导航栏
+# Navbar 导航栏
 
 
 ## 用法
 
 
-```vue
-<template>
-  <navbar :title="state.title">
-    <template #left>
-      <icon name="home" />
-    </template>
-  </navbar>
-</template>
-<script lang="ts" setup>
-import { reactive } from 'vue';
-import { Navbar } from '@fishui/taro-vue';
+```tsx
+import { Navbar } from '@fishui/taro-react';
+import { View } from '@tarojs/components';
 
-const state = reactive({
-  title: "标题",
-});
-
-const onChange = (list) => {
-	console.log('onChange', list);
-	// state.listData = list; // 直接赋值 会重新渲染
-};
-
-</script>
+export default () => {
+  return <View>
+    <Navbar title="标题" backgroundColor="#000" color="#fff" />
+  </View>
+}
 ```
 
 
@@ -44,13 +31,5 @@ const onChange = (list) => {
 | height | 导航栏高度（不包含StatusBar） |  `number|string`  |  44      |
 | hideBack | 是否隐藏返回按钮 |  `boolean`  |  false    |
 | goback | 自定义点击返回事件 |  `() => void`  |  -   |
-
-
-
-### Slots
-
-| 名称          | 说明                   | 参数类型     |
-| ---------------- | ---------------------- | ------------ |
-| title         | 标题插槽，用于自定义标题内容    |  VNode |
-| left        |  左边返回按钮处插槽，自定义返回按钮         |   VNode |
-
+| renderLeft | 自定义左边返回按钮       |  `() => React.ReactNode;`  |  -   |
+| renderTitle | 自定义标题内容   |  `() => React.ReactNode;`  |  -   |

@@ -3,59 +3,58 @@
 
 ## 用法
 
-```vue
-<template>
-  <scroll ref="scrollRef" :refresh="fetchData" :loadmore="loadmore" :hasmore="state.hasMore">
-    <view v-for="item in state.dataList" :key="item.id">
-      list item content
-    </view>
-  </scroll>
-</template>
-<script lang="ts" setup>
-import { reactive } from 'vue';
-import Taro from '@tarojs/taro';
-import { Scroll } from '@fishui/taro-vue';
 
-// api doc https://www.wanandroid.com/blog/show/2
-const fetchData = async (page = 1) => {
-  const page_size = 10;
-  try {
-    const { data: { data } } = await Taro.request({
-      url: `https://www.wanandroid.com/project/list/${page}/json`,
-      data: {
-        cid: 29,
-        page_size,
+```tsx
+import { useState, useRef, useEffect } from 'react';
+import { View } from '@tarojs/components';
+import { Scroll } from '@fishui/taro-react';
+
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+export default () => {
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
+  const [list, setList] = useState<IListItem[]>([]);
+  const scrollRef = useRef<{refresh: () => Promise<any>}>(null);
+
+  useEffect(() => {
+    setTimeout(() => scrollRef.current?.refresh()); // 默认刷新
+  }, []);
+
+  const fetchData = async (pageNum = 1) => {
+    const page_size = 10;
+    try {
+      await delay(Math.random() * 1200);
+      if (page === 1) {
+        setList(Array.from({ length: 10 }));
+      } else {
+        setList([...list, ...Array.from({ length: 10 })])
       }
-    })
-    if (page === 1) {
-      state.dataList = data.datas;
-    } else {
-      state.dataList.push(...data.datas);
+      setPage(pageNum)
+      setHasMore(pageNum < data.pageCount)
+    } catch (error) {
+
     }
-    state.page = page;
-    state.hasMore = page < data.pageCount;
-  } catch (error) {}
-}
+  }
 
-const loadmore = () => {
-  if (!state.hasMore) return;
-  return fetchData(state.page + 1);
+  const loadmore = () => {
+    if (!hasMore) return;
+    return fetchData(page + 1);
+  };
+
+  return (
+    <View className='list-wrap'>
+      <Scroll
+        ref={scrollRef}
+        refresh={fetchData}
+        loadmore={loadmore}
+        hasmore={hasMore}
+      >
+        {list.map((item, index) => <View key={index}>{item.content}</View>)}
+      </Scroll>
+    </View>
+  )
 };
-
-const scrollRef = ref(null);
-
-const state = reactive({
-  page: 1,
-  hasMore: true,
-  dataList: [],
-});
-
-onMounted(() => {
-  scrollRef.value?.refresh();
-});
-
-
-</script>
 ```
 
 
@@ -76,14 +75,7 @@ onMounted(() => {
 | successText | 下拉刷新成功文案（可以动态给'刷新成功xx条数据'） |  `string`  |   '刷新成功'   |
 | hasmore | 是否结束end 还有更多？ 可以触发 loadmore  |  `boolean`  |   true  |
 | loadallText | 已经加载全部文案 |  `string`  |   '已经加载全部'   |
-
-
-
-### Events
-
-| 事件名           | 说明                   | 类型     |
-| ---------------- | ---------------------- | ------------ |
-| scroll            | 滚动事件  |  (e: Event) => void  |
+| onScroll | 滚动事件 |  `(event: BaseEventOrig<ScrollViewProps.onScrollDetail>) => void;`  |    |
 
 
 ### Scroll 暴露的方法

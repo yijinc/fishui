@@ -4,12 +4,21 @@
 对于相应的一些比较完善的ui组件库，他们貌似只会依赖于设计，从 Button 开始造组件。。。
 很多时候，我们可能不是需要他们的ui风格（主题），而是需要一个功能与交互相符、性能可靠的组件
 
-fishui 是一套基于 [taro](https://github.com/NervJS/taro) 和 [uni-app](https://github.com/dcloudio/uni-app) 的常用的小程序组件，致力于用最简洁、舒适可靠的实现，这里可能有你需要的而ui库没有给你提供的组件
+fishui 是一套基于 [taro](https://github.com/NervJS/taro) 和 [uni-app](https://github.com/dcloudio/uni-app) 的常用的小程序组件，致力于用最简洁、舒适可靠的实现。这里可能有你需要的而ui库没有给你提供的组件
 
 
-## 线上演示
+## 快速体验
 
-![FishUI](https://img.souche.com/bolt/6JA5Bw2QbOvZxGymKuHbz/gh_1407e2b12b0f_258.jpg)
+![FishUI 微信小程序](https://img.souche.com/bolt/6JA5Bw2QbOvZxGymKuHbz/gh_1407e2b12b0f_258.jpg)
+
+
+## 特性
+
+- 支持 TypeScript
+- react 和 vue 高度统一的 API
+- 支持按需引用
+- 绝对的轻量：每个组件就一个单独的文件，代码量都不超过300行。安装依赖只需占用336K磁盘空间
+
 
 ## 组件列表
 

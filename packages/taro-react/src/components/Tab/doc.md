@@ -3,20 +3,26 @@
 
 ## 用法
 
-```vue
-<template>
-  <tabs v-model="state.current" :tab-list="state.tabList" scrollable />
-</template>
-<script lang="ts" setup>
-import { reactive } from 'vue';
-import { Tab } from '@fishui/taro-vue';
+```tsx
+import { useState } from 'react';
+import { View } from '@tarojs/components';
+import { Tab } from '@fishui/taro-react';
 
-const state = reactive({
-  tabList: [{ title: '关注' }, { title: '推荐' }, { title: '热榜' }],
-  current: 0,
-});
+export default () => {
+  const [current, setCurrent] = useState(0);
+  const tabList = [{ title: '关注' }, { title: '推荐' }, { title: '热榜' }];
 
-</script>
+  return (
+    <View>
+      <Tab
+        scrollable
+        current={current}
+        onChange={setCurrent}
+        tabList={tabList}
+      />
+    </View>
+  )
+};
 ```
 
 
@@ -29,5 +35,5 @@ const state = reactive({
 | ---------------------- | ----------------------------------------------------------- | -------------- | ----------- |
 | tabList  | tabs列表           | `{ title: string; disabled?: boolean; validate?: (index: number) => boolean|Promise<boolean>; }[]`   |  []  |
 | scrollable | 是否可以滚动       | `boolean`        |   false   |
-| modelValue    | 当前current index | `number`        | 0 |
-
+| current    | 当前current index | `number`        | 0 |
+| onChange    | 受控回调 | `(value: number) => void;`        |  |

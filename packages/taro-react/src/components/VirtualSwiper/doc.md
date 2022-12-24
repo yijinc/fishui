@@ -3,39 +3,27 @@
 
 ## 用法
 
-```vue
-<template>
-  <virtual-swiper
-    style="height: 500PX"
-    :current="state.current"
-    :slides-per-view="1"
-    @change="onChange"
-  >
-    <swiper-slide v-for="(item, index) in state.sliders" :key="index">
-      <view class="item" :style="{ backgroundColor: item.color }">{{ item.index}}</view>
-    </swiper-slide>
-  </virtual-swiper>
-</template>
-<script lang="ts" setup>
-import { reactive } from 'vue';
-import { VirtualSwiper, SwiperSlide } from '@fishui/taro-vue';
+```tsx
+import { useState } from 'react';
+import { View } from '@tarojs/components';
+import { VirtualSwiper, SwiperSlide } from '@fishui/taro-react';
+import styles from './styles.module.scss';
 
-const colors = ['red', 'yellow', 'blue', 'green'];
-const sliders: IItem[] = Array.from(({ length: 10000 })).map((_, index) => ({
-  index,
-  color: colors[index % 4],
-}));
+export default () => {
+  const [current, setCurrent] = useState(0);
+  const [sliders, setSliders] = useState(Array.from(({ length: 10000 }));
 
-const state = reactive({
-  sliders,
-  current: 0,
-});
-
-const onChange = (index) => {
-  state.current = index;
+  return (
+    <VirtualSwiper current={current} onChange={onChange} slidesPerView={2}>
+      { sliders.map((_item, index) => (
+          <SwiperSlide>
+            <View className='item'>{index}</View>
+          </SwiperSlide>
+        ))
+      }
+    </VirtualSwiper>
+  )
 };
-
-</script>
 ```
 
 
@@ -50,12 +38,4 @@ const onChange = (index) => {
 | duration                | 动画时长（单位是ms）                                                | `number`        | 500        |
 | slidesPerView |  当前container 上下保存多少个view（swiper-slide）|  `number`  | 1        |
 | catchMove |  是否防止穿透，阻止默认事件 |  `boolean`  |  true        |
-
-
-
-### Events
-
-| 事件名           | 说明                   | 回调参数     |
-| ---------------- | ---------------------- | ------------ |
-| change            | 滑动之后的回调         | 当前索引值index |
-
+| onChange |  滑动之后的回调 |  `(index: number) => void;`  |          |
