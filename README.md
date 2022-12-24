@@ -19,6 +19,7 @@ fishui 是一套基于 [taro](https://github.com/NervJS/taro) 和 [uni-app](http
 - [Drag：拖拽排序 - 单屏](https://github.com/yijinc/fishui/tree/master/packages/taro-vue/src/components/Drag/doc.md)
 - [DragX：拖拽排序 - 列表](https://github.com/yijinc/fishui/tree/master/packages/taro-vue/src/components/DragX/doc.md)
 - [VirtualSwiper：虚拟滑动](https://github.com/yijinc/fishui/tree/master/packages/taro-vue/src/components/VirtualSwiper/doc.md)
+- TODO: TreeSelect：无限层级选择器
 
 
 ## 安装
