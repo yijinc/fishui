@@ -42,7 +42,8 @@
     "@tarojs/plugin-platform-qq": "3.5.8",
     "@tarojs/plugin-platform-swan": "3.5.8",
     "@tarojs/plugin-platform-tt": "3.5.8",
-    "@tarojs/plugin-platform-weapp": "3.5.8"
+    "@tarojs/plugin-platform-weapp": "3.5.8",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",

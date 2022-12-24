@@ -50,10 +50,10 @@ const operate = (func: 'push'|'unshift'|'remove'|'insert') => {
       tabList={tabList}
     />
     <View class={styles.footer}>
-      <Button onTap={() => operate('push')}>尾部添加</Button>
-      <Button onTap={() => operate('unshift')}>头部添加</Button>
-      <Button onTap={() => operate('remove')}>移除第2个</Button>
-      <Button onTap={() => operate('insert')}>插入第3个</Button>
+      <Button onClick={() => operate('push')}>尾部添加</Button>
+      <Button onClick={() => operate('unshift')}>头部添加</Button>
+      <Button onClick={() => operate('remove')}>移除第2个</Button>
+      <Button onClick={() => operate('insert')}>插入第3个</Button>
     </View>
   </View>
   )

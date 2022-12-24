@@ -102,7 +102,7 @@ export default () => {
 			<Slider step={1} showValue min={1} max={5} value={columns} onChange={onColumnsChange} />
 			<View className={styles.bottom}>
 				<Text>colums: { columns }</Text>
-				<Button onTap={() => setLongpressTrigger(!longpressTrigger)}>trigger: { longpressTrigger ? 'longpress' : 'touchstart' }</Button>
+				<Button onClick={() => setLongpressTrigger(!longpressTrigger)}>trigger: { longpressTrigger ? 'longpress' : 'touchstart' }</Button>
 			</View>
 		</View>
   </View>

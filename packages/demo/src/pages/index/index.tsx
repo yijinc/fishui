@@ -17,7 +17,10 @@ const list = [
   { title: 'Virtual Swiper', path: '/pages/virtual-swiper/index' },
 ];
 
-const navigate = (url) => Taro.navigateTo({ url });
+const navigate = (url) => {
+  console.log(123)
+  Taro.navigateTo({ url });
+}
 const logoURL = 'https://img.souche.com/bolt/4aEPNxR0gh8-B5Vz_UtU6/image.png';
 const title = 'Fish UI 是一套基于 taro 和 uni-app 的常用的小程序组件，致力于用最简洁、舒适可靠的实现';
 
@@ -38,7 +41,7 @@ export default () => {
     <View className={styles.itemTitle}>组件列表</View>
     {
       list.map((item => (
-        <View className={styles.item} key={item.title} onTap={() => navigate(item.path)}>{ item.title }</View>
+        <View className={styles.item} key={item.title} onClick={() => navigate(item.path)}>{ item.title }</View>
       )))
     }
     </View>
