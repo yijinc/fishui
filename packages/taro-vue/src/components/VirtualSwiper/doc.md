@@ -47,9 +47,10 @@ const onChange = (index) => {
 | ---------------------- | ----------------------------------------------------------- | -------------- | ----------- |
 | current                | 当前 index 位置           | `number`       |  0      |
 | vertical                | 是否为垂直滑动       | `boolean`        |   true       |
-| duration                | 动画时长（单位是ms）                                                | `number`        | 500        |
+| duration                | 动画时长（单位是ms） | `number`        | 500        |
 | slidesPerView |  当前container 上下保存多少个view（swiper-slide）|  `number`  | 1        |
 | catchMove |  是否防止穿透，阻止默认事件 |  `boolean`  |  true        |
+| debounce   | 节流？默认同 duration 值，如果设置为 0, 则可快速滑动 | `number`        | 500       |
 
 
 
@@ -58,4 +59,5 @@ const onChange = (index) => {
 | 事件名           | 说明                   | 回调参数     |
 | ---------------- | ---------------------- | ------------ |
 | change            | 滑动之后的回调         | 当前索引值index |
+| transitionend  | 过渡动画结束后回调    | Event |
 

@@ -38,4 +38,6 @@ export default () => {
 | duration                | 动画时长（单位是ms）                                                | `number`        | 500        |
 | slidesPerView |  当前container 上下保存多少个view（swiper-slide）|  `number`  | 1        |
 | catchMove |  是否防止穿透，阻止默认事件 |  `boolean`  |  true        |
+| debounce   | 节流？默认同 duration 值，如果设置为 0, 则可快速滑动 | `number`        | 500       |
 | onChange |  滑动之后的回调 |  `(index: number) => void;`  |          |
+| onTransitionEnd |  过渡动画结束后回调 |  `(event: BaseEventOrig<{ elapsedTime: number }>) => void;`  |          |
