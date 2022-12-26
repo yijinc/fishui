@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classnames from 'classnames';
 import Taro from '@tarojs/taro';
-import { View } from '@tarojs/components';
+import { View, BaseEventOrig } from '@tarojs/components';
 import { execSelectQuery } from '../../utils';
 
 type ISwiperProps = React.PropsWithChildren<{
@@ -13,7 +13,9 @@ type ISwiperProps = React.PropsWithChildren<{
   catchMove?: boolean; // 是否防止穿透，阻止默认事件
   vertical?: boolean;
   slidesPerView?: number; // 当前container 上下保存多少个？
+  debounce?: number; // 节流？默认同 duration 一样，如果设置为 0, 则可快速滑动
   onChange?: (index: number) => void;
+  onTransitionEnd?: (event: BaseEventOrig<{ elapsedTime: number }>) => void;
 }>;
 
 interface IState {
@@ -30,6 +32,7 @@ interface IUtils {
   startX: number;
   startY: number;
   startTouchTime: number;
+  lastTouchTime: number;
 }
 
 const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
@@ -50,6 +53,7 @@ const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
     startX: 0,
     startY: 0,
     startTouchTime: 0,
+    lastTouchTime: 0,
   });
 
   const slides = React.useMemo<React.ReactElement[]>(() => {
@@ -73,8 +77,11 @@ const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
     _.startX = 0;
     _.startY = 0;
     _.startTouchTime = 0;
+    _.lastTouchTime = Date.now();
     setIsMoving(false)
   };
+
+  const onTransitionEnd = (e) => props.onTransitionEnd?.(e);
 
   const moveTo = (index: number) => {
     const maxLen = slides.length;
@@ -102,6 +109,9 @@ const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
   
   const onTouchStart = (event: TouchEvent) => {
     if (props.catchMove) event.stopPropagation();
+    if (Date.now() - _.lastTouchTime < props.debounce!) {
+      return;
+    }
     const iTouch = event.touches[0];
     if (!iTouch) return;
     _.startX = iTouch.pageX;
@@ -195,14 +205,15 @@ const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
     >
       <View
         className={classnames({
-        'fish-swiper__container': true,
-        'fish-swiper__vertical': props.vertical,
-      })}
+          'fish-swiper__container': true,
+          'fish-swiper__vertical': props.vertical,
+        })}
         style={{
-        transitionDuration: `${isMoving ? 0 : props.duration}ms`,
-        transform: `translateX(${state.translateX}px) translateY(${state.translateY}px)`,
-        [props.vertical ? 'height' : 'width']: props.vertical ? `${state.height * slides.length}px` : `${state.width * slides.length}px`,
-      }}
+          transitionDuration: `${isMoving ? 0 : props.duration}ms`,
+          transform: `translateX(${state.translateX}px) translateY(${state.translateY}px)`,
+          [props.vertical ? 'height' : 'width']: props.vertical ? `${state.height * slides.length}px` : `${state.width * slides.length}px`,
+        }}
+        onTransitionEnd={onTransitionEnd}
       >
         {slides.filter((_c, index) => index >= state.from && index <= state.to).map((slide, index) => {
           const childProps = { ...slide.props };
@@ -222,6 +233,7 @@ VirtualSwiper.defaultProps = {
   vertical: true,
   catchMove: true,
   slidesPerView: 1,
+  debounce: 500,
 };
 
 export default VirtualSwiper;
