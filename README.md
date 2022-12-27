@@ -73,7 +73,7 @@ import '@fishui/taro-vue/lib/components/Tab/style.scss';
       "import",
       {
         "libraryName": "@fishui/taro-vue",
-        "libraryDirectory": "lib/es",
+        "libraryDirectory": "lib/components",
         "style": (name, file) => name + '/style.scss',
         "camel2DashComponentName": false
       }

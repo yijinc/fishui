@@ -1,6 +1,6 @@
 {
   "name": "@fishui/taro-react",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "fishui for react",
   "keywords": [
     "taro",
@@ -15,14 +15,8 @@
   "main": "./lib/index.umd.js",
   "module": "./lib/index.js",
   "type": "module",
-  "exports": {
-    ".": {
-      "import": "./lib/index.js",
-      "require": "./lib/index.umd.js"
-    }
-  },
   "typings": "./lib/index.d.ts",
-  "style": "./lib/style/style.css",
+  "style": "./lib/style.css",
   "sideEffects": [
     "*.scss",
     "*.css"
