@@ -40,6 +40,8 @@ interface ISwiperProps {
   vertical?: boolean;
   slidesPerView?: number; // 当前container 上下保存多少个？
   debounce?: number; // 节流？默认同 duration 一样，如果设置为 0, 则可快速滑动
+  width?: number;
+  height?: number;
 }
 
 interface IState {
@@ -203,13 +205,25 @@ const onTouchEnd = (event: TouchEvent) => {
   reset();
 };
 
+const initSize = (width: number, height: number) => {
+  doNotAnimate();
+  state.width = width;
+  state.height = height;
+  if (props.vertical) {
+    state.translateY = -props.current * height;
+  } else {
+    state.translateX = -props.current * width;
+  }
+}
+
 Taro.useReady(() => {
-  execSelectQuery(Taro.createSelectorQuery().select(`#${props.id}`).boundingClientRect()).then((res: Taro.NodesRef.BoundingClientRectCallbackResult) => {
-    doNotAnimate();
-    state.width = res.width;
-    state.height = res.height;
-    state.translateY = -props.current * state.height;
-  });
+  if (props.width && props.height) {
+    initSize(props.width, props.height);
+  } else {
+    execSelectQuery(Taro.createSelectorQuery().select(`#${props.id}`).boundingClientRect()).then((res: Taro.NodesRef.BoundingClientRectCallbackResult) => {
+      initSize(res.width, res.height);
+    });
+  }
 });
 
 

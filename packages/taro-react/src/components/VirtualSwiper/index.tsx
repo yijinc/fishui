@@ -14,6 +14,8 @@ type ISwiperProps = React.PropsWithChildren<{
   vertical?: boolean;
   slidesPerView?: number; // 当前container 上下保存多少个？
   debounce?: number; // 节流？默认同 duration 一样，如果设置为 0, 则可快速滑动
+  width?: number;
+  height?: number;
   onChange?: (index: number) => void;
   onTransitionEnd?: (event: BaseEventOrig<{ elapsedTime: number }>) => void;
 }>;
@@ -165,11 +167,10 @@ const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
       doNotAnimate();
     }
     moveTo(props.current!);
-  }, [props.current])
-  
-  Taro.useReady(() => {
-    execSelectQuery(Taro.createSelectorQuery().select(`#${props.id}`).boundingClientRect()).then(({ width, height }: any) => {
-      doNotAnimate();
+  }, [props.current]);
+
+  const initSize = (width: number, height: number) => {
+    doNotAnimate();
       const nextState: Partial<IState> = {
         width,
         height,
@@ -180,6 +181,14 @@ const VirtualSwiper: React.FC<ISwiperProps> = (props) => {
         nextState.translateX = -props.current! * width;
       }
       setState(nextState);
+  }
+  
+  Taro.useReady(() => {
+    if (props.width && props.height) {
+      initSize(props.width, props.height);
+    }
+    execSelectQuery(Taro.createSelectorQuery().select(`#${props.id}`).boundingClientRect()).then(({ width, height }: any) => {
+      initSize(width, height);
     });
   });
 
