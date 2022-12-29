@@ -19,7 +19,7 @@ specifiers:
   webpack: 5.69.0
 
 dependencies:
-  '@fishui/taro-react': 1.0.6
+  '@fishui/taro-react': 1.1.3
   '@fishui/taro-request': 1.0.0
   '@tarojs/plugin-platform-alipay': 3.5.8_@types+react@18.0.26
   '@tarojs/plugin-platform-jd': 3.5.8_@types+react@18.0.26
@@ -1275,8 +1275,8 @@ packages:
       - supports-color
     dev: true
 
-  /@fishui/taro-react/1.0.6:
-    resolution: {integrity: sha512-T14K57nTFTWNyusRMgi4ZyEIc6nrDTJmaG9ozWkR0H6p/jOpr7FF3vSGMCaQRrAzWB8B4Le/CqSh4vTXM51WJg==}
+  /@fishui/taro-react/1.1.3:
+    resolution: {integrity: sha512-jayTLLjF8dZKslIk9TnV8YOvN/lFgMLLoKOA2TP5QNa4i7BkGZTdHLTY0ywcigbwZclMzG9VTHjNhGOLDpmWuw==}
     dev: false
 
   /@fishui/taro-request/1.0.0:

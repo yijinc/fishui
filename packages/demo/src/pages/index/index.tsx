@@ -17,10 +17,7 @@ const list = [
   { title: 'Virtual Swiper', path: '/pages/virtual-swiper/index' },
 ];
 
-const navigate = (url) => {
-  console.log(123)
-  Taro.navigateTo({ url });
-}
+const navigate = (url) => Taro.navigateTo({ url });
 const logoURL = 'https://img.souche.com/bolt/4aEPNxR0gh8-B5Vz_UtU6/image.png';
 const title = 'Fish UI 是一套基于 taro 和 uni-app 的常用的小程序组件，致力于用最简洁、舒适可靠的实现';
 
