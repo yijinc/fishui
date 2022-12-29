@@ -2,7 +2,11 @@
   background-color: #FFF;
   height: 100vh;
   font-family: PingFang SC, Microsoft YaHei, Helvetica, Hiragino Sans GB, SimSun, sans-serif;
-  
+ 
+  taro-button-core {
+    margin: 0 8px;
+  }
+
   .item {
     padding: 20px;
     border-top: 1px solid #eee;
