@@ -285,29 +285,7 @@ useReady(() => {
   render('init');
 });
 
-const isEqualListData = (l1: IPropsListItem[], l2: IPropsListItem[]): boolean => {
-  const isEqual = (a, b) => { // _.isEqual 简单判断
-    if (Array.isArray(a) && Array.isArray(b)) {
-      return a.length === b.length ? a.every((item, index) => isEqual(item, b[index])) : false;
-    }
-    if (typeof a === 'object' && typeof b === 'object') {
-      return Object.keys(a).length === Object.keys(b).length ? Object.keys(a).every((key) => isEqual(a[key], b[key])) : false;
-    }
-    return Object.is(a, b);
-  };
-  if (l1.length !== l2.length) return false;
-  return l1.every((item, index) => isEqual(item, l2[index]));
-};
-
 watch(() => props.itemHeight, render);
 watch(() => props.columns, render);
-
-// _previousListData 为 props.listData 的浅拷贝，fix props.listData 引用改变数据 watch 不到 pre data
-let _previousListData = [...props.listData];
-watch(() => props.listData, (nextListData) => {
-  if (!isEqualListData(nextListData, _previousListData)) {
-    render();
-  }
-  _previousListData = [...nextListData];
-}, { deep: true });
+watch(() => props.listData, render, { deep: true });
 </script>

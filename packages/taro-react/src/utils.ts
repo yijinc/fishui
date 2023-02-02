@@ -42,3 +42,16 @@ export const getSizeToPx = (size: number | string): string | 0 => {
   }
   return size;
 };
+
+/***
+ * _.isEqual 简单判断
+ * **/
+export const isEqual = (a: any, b: any) => {
+  if (Array.isArray(a) && Array.isArray(b)) {
+    return a.length === b.length ? a.every((item, index) => isEqual(item, b[index])) : false;
+  }
+  if (typeof a === 'object' && typeof b === 'object' && a !== null && b !== null) {
+    return Object.keys(a).length === Object.keys(b).length ? Object.keys(a).every((key) => isEqual(a[key], b[key])) : false;
+  }
+  return Object.is(a, b);
+};
